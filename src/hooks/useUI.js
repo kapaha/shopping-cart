@@ -3,9 +3,7 @@ import { useMediaQuery } from 'hooks';
 import { theme } from 'styles/theme';
 
 const useUI = () => {
-    const isDesktop = useMediaQuery(
-        `(min-width: ${theme.breakPoints.desktops})`
-    );
+    const isDesktop = useMediaQuery(`(min-width: ${theme.breakPoints.large})`);
 
     useEffect(() => {
         if (isDesktop) closeMobileNav();

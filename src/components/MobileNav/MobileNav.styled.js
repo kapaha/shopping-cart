@@ -11,7 +11,8 @@ export const Navbar = styled.nav`
     transform: ${({ isMenuActive }) =>
         isMenuActive ? 'translateX(0)' : 'translateX(-100%)'};
     transition: transform 0.3s ease-in-out;
-    background-color: ${theme.colors.darkBlue.dark};
+    background-color: ${theme.colors.darkGrey.dark};
+    z-index: ${theme.zIndex.mobileNav};
 `;
 
 export const Menu = styled.ul`

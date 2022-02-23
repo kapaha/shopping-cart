@@ -10,14 +10,14 @@ export const StyledHeader = styled.header`
     color: white;
     background-color: ${theme.colors.darkBlue.dark};
 
-    @media screen and (min-width: ${theme.breakPoints.tablets}) {
+    @media screen and (min-width: ${theme.breakPoints.medium}) {
         padding: 2rem;
     }
 
     .menu-toggle {
-        z-index: 999;
+        z-index: ${theme.zIndex.menuToggle};
 
-        @media screen and (min-width: ${theme.breakPoints.desktops}) {
+        @media screen and (min-width: ${theme.breakPoints.large}) {
             display: none;
         }
     }

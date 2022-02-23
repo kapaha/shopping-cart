@@ -42,9 +42,16 @@ export const theme = {
         },
     },
     breakPoints: {
-        tablets: '481px',
-        laptops: '769px',
-        desktops: '1025px',
-        largeScreens: '1201px',
+        small: '481px',
+        medium: '769px',
+        large: '1025px',
+        extraLarge: '1201px',
+    },
+    zIndex: {
+        menuToggle: 1,
+        heroImage: -1,
+    },
+    fontFamily: {
+        title: 'Bebas Neue, cursive',
     },
 };
