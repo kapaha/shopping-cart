@@ -1,18 +1,18 @@
 import React from 'react';
-import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
+import { FaShoppingCart, FaBars } from 'react-icons/fa';
 import { IconButton, MobileNav, DesktopNav, StyledLink } from 'components';
 import { StyledHeader, Container, Logo } from './Header.styled';
 
 export const Header = ({
     isMobileNavActive,
-    toggleMobileNav,
+    openMobileNav,
     closeMobileNav,
 }) => {
     return (
         <StyledHeader>
             <Container>
-                <IconButton onClick={toggleMobileNav} className="menu-toggle">
-                    {isMobileNavActive ? <FaTimes /> : <FaBars />}
+                <IconButton onClick={openMobileNav} className="menu-toggle">
+                    <FaBars />
                 </IconButton>
                 <StyledLink to="/">
                     <Logo>Ochre</Logo>

@@ -17,8 +17,6 @@ export const StyledHeader = styled.header`
     }
 
     .menu-toggle {
-        z-index: ${theme.zIndex.menuToggle};
-
         @media screen and (min-width: ${theme.breakPoints.large}) {
             display: none;
         }

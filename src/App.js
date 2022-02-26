@@ -7,14 +7,14 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/theme';
 
 const App = () => {
-    const { isMobileNavActive, toggleMobileNav, closeMobileNav } = useUI();
+    const { isMobileNavActive, openMobileNav, closeMobileNav } = useUI();
 
     return (
         <ThemeProvider theme={theme}>
             <>
                 <Header
                     isMobileNavActive={isMobileNavActive}
-                    toggleMobileNav={toggleMobileNav}
+                    openMobileNav={openMobileNav}
                     closeMobileNav={closeMobileNav}
                 />
                 <Routes>

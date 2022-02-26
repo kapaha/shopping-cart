@@ -48,7 +48,6 @@ export const theme = {
         extraLarge: '1201px',
     },
     zIndex: {
-        menuToggle: 1,
         heroImage: -1,
     },
     fontFamily: {

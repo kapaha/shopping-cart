@@ -1,11 +1,14 @@
 import React from 'react';
-import { FaHome, FaShoppingBag } from 'react-icons/fa';
-import { StyledLink } from 'components';
+import { FaTimes, FaHome, FaShoppingBag } from 'react-icons/fa';
+import { IconButton, StyledLink } from 'components';
 import { Navbar, Menu, MenuItem } from './MobileNav.styled';
 
 export const MobileNav = ({ isMenuActive, closeMobileNav }) => {
     return (
         <Navbar isMenuActive={isMenuActive}>
+            <IconButton onClick={closeMobileNav}>
+                <FaTimes />
+            </IconButton>
             <Menu>
                 <MenuItem>
                     <StyledLink

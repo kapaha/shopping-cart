@@ -11,15 +11,19 @@ const useUI = () => {
 
     const [isMobileNavActive, setIsMobileNavActive] = useState(false);
 
-    function toggleMobileNav() {
-        setIsMobileNavActive((prev) => !prev);
+    function openMobileNav() {
+        setIsMobileNavActive(true);
     }
 
     function closeMobileNav() {
         setIsMobileNavActive(false);
     }
 
-    return { isMobileNavActive, toggleMobileNav, closeMobileNav };
+    return {
+        isMobileNavActive,
+        closeMobileNav,
+        openMobileNav,
+    };
 };
 
 export default useUI;
