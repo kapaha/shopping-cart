@@ -14,8 +14,8 @@ export const Header = ({
                 <IconButton onClick={toggleMobileNav} className="menu-toggle">
                     {isMobileNavActive ? <FaTimes /> : <FaBars />}
                 </IconButton>
-                <StyledLink to="/" className="logo">
-                    Logo
+                <StyledLink to="/">
+                    <Logo>Ochre</Logo>
                 </StyledLink>
                 <DesktopNav />
                 <IconButton>

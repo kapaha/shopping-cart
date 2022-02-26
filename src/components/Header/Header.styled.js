@@ -3,12 +3,14 @@ import { theme } from 'styles/theme';
 
 export const StyledHeader = styled.header`
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    position: relative;
     padding: 1rem;
     color: white;
-    background-color: ${theme.colors.darkBlue.dark};
 
     @media screen and (min-width: ${theme.breakPoints.medium}) {
         padding: 2rem;
@@ -21,15 +23,17 @@ export const StyledHeader = styled.header`
             display: none;
         }
     }
+`;
 
-    .logo {
-        font-size: 2rem;
+export const Logo = styled.h1`
+    font-family: ${theme.fontFamily.title};
+    font-size: 3rem;
+    letter-spacing: 0.2em;
+    height: 100%;
+    padding: 0.1em 0 0 0.2em;
 
-        padding: 0.25em 0.5em;
-
-        @media screen and (min-width: ${theme.breakPoints.tablets}) {
-            font-size: 2.5rem;
-        }
+    &:hover {
+        color: ${theme.colors.darkGrey.dark};
     }
 `;
 
