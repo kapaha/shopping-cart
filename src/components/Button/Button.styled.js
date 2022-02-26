@@ -73,6 +73,6 @@ export const StyledLink = styled(Link)`
     border-radius: 0;
 
     &:hover {
-        color: ${theme.colors.yellow.light};
+        color: black;
     }
 `;

@@ -29,10 +29,6 @@ export const Logo = styled.h1`
     letter-spacing: 0.2em;
     height: 100%;
     padding: 0.1em 0 0 0.2em;
-
-    &:hover {
-        color: ${theme.colors.darkGrey.dark};
-    }
 `;
 
 export const Container = styled.div`
