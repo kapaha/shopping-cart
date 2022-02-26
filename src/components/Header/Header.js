@@ -5,27 +5,32 @@ import { StyledHeader, Container, Logo } from './Header.styled';
 
 export const Header = ({
     isMobileNavActive,
+    isMobileNavOpen,
     openMobileNav,
     closeMobileNav,
 }) => {
     return (
         <StyledHeader>
             <Container>
-                <IconButton onClick={openMobileNav} className="menu-toggle">
-                    <FaBars />
-                </IconButton>
+                {isMobileNavActive && (
+                    <IconButton onClick={openMobileNav} className="menu-toggle">
+                        <FaBars />
+                    </IconButton>
+                )}
                 <StyledLink to="/">
                     <Logo>Ochre</Logo>
                 </StyledLink>
-                <DesktopNav />
+                {!isMobileNavActive && <DesktopNav />}
                 <IconButton>
                     <FaShoppingCart />
                 </IconButton>
             </Container>
-            <MobileNav
-                isMenuActive={isMobileNavActive}
-                closeMobileNav={closeMobileNav}
-            />
+            {isMobileNavActive && (
+                <MobileNav
+                    isMobileNavOpen={isMobileNavOpen}
+                    closeMobileNav={closeMobileNav}
+                />
+            )}
         </StyledHeader>
     );
 };

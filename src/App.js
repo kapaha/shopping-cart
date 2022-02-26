@@ -7,13 +7,19 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/theme';
 
 const App = () => {
-    const { isMobileNavActive, openMobileNav, closeMobileNav } = useUI();
+    const {
+        isMobileNavActive,
+        isMobileNavOpen,
+        openMobileNav,
+        closeMobileNav,
+    } = useUI();
 
     return (
         <ThemeProvider theme={theme}>
             <>
                 <Header
                     isMobileNavActive={isMobileNavActive}
+                    isMobileNavOpen={isMobileNavOpen}
                     openMobileNav={openMobileNav}
                     closeMobileNav={closeMobileNav}
                 />

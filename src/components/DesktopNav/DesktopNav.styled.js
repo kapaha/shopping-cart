@@ -1,13 +1,7 @@
 import styled from 'styled-components';
-import { theme } from 'styles/theme';
 
 export const Navbar = styled.nav`
-    display: none;
     margin-left: auto;
-
-    @media screen and (min-width: ${theme.breakPoints.extraLarge}) {
-        display: block;
-    }
 `;
 
 export const Menu = styled.ul`

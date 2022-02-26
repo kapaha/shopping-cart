@@ -3,26 +3,33 @@ import { useMediaQuery } from 'hooks';
 import { theme } from 'styles/theme';
 
 const useUI = () => {
-    const isDesktop = useMediaQuery(`(min-width: ${theme.breakPoints.large})`);
+    const isDesktop = useMediaQuery(`(min-width: ${theme.breakPoints.medium})`);
 
     useEffect(() => {
-        if (isDesktop) closeMobileNav();
+        if (isDesktop) {
+            closeMobileNav();
+            setIsMobileNavActive(false);
+            return;
+        }
+        setIsMobileNavActive(true);
     }, [isDesktop]);
 
     const [isMobileNavActive, setIsMobileNavActive] = useState(false);
+    const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
     function openMobileNav() {
-        setIsMobileNavActive(true);
+        setIsMobileNavOpen(true);
     }
 
     function closeMobileNav() {
-        setIsMobileNavActive(false);
+        setIsMobileNavOpen(false);
     }
 
     return {
         isMobileNavActive,
-        closeMobileNav,
+        isMobileNavOpen,
         openMobileNav,
+        closeMobileNav,
     };
 };
 
