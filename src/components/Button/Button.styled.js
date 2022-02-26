@@ -11,15 +11,13 @@ const commonStyles = css`
     background-color: transparent;
     cursor: pointer;
 
-    // default for button, but useful for <a>
     display: inline-block;
     text-align: center;
     text-decoration: none;
 
-    // shared styles
-    padding: 0.5em 1em;
-    font-size: 1rem;
+    // common styles
     font-weight: 600;
+    color: white;
     border: solid 2px transparent;
     border-radius: 0.4em;
     outline: solid transparent;
@@ -36,13 +34,16 @@ const commonStyles = css`
 `;
 
 export const StyledButton = styled.button`
+    --bg-color: ${theme.colors.darkGrey.dark};
+
     ${commonStyles}
 
-    color: white;
-    background-color: ${theme.colors.purple.light};
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    background-color: var(--bg-color);
 
     &:hover {
-        color: ${theme.colors.purple.light};
+        color: var(--bg-color);
         border-color: currentColor;
         background-color: white;
     }
@@ -51,8 +52,8 @@ export const StyledButton = styled.button`
 export const IconButton = styled.button`
     ${commonStyles}
 
-    font-size: 1.5rem;
     padding: 0.5em;
+    font-size: 1.5rem;
 
     &:hover {
         border-color: white;
@@ -68,8 +69,7 @@ export const StyledLink = styled(Link)`
 
     display: flex;
     justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 600;
+    align-items: center;
     border-radius: 0;
 
     &:hover {
