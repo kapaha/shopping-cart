@@ -20,7 +20,7 @@ export const Image = styled.img`
 
 export const MessageContainer = styled.div`
     text-align: center;
-    padding: 100px;
+    margin-top: 10vmax;
 
     > * + * {
         margin-top: 2rem;
