@@ -14,7 +14,7 @@ export const Image = styled.img`
     left: 0;
     width: 100%;
     object-fit: cover;
-    object-position: 35% 50%;
+    object-position: 35% 20%;
     z-index: ${theme.zIndex.heroImage};
 `;
 
