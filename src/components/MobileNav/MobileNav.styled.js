@@ -31,5 +31,9 @@ export const MenuItem = styled.li`
 
     .link {
         padding: 3rem;
+
+        &:hover {
+            color: ${theme.colors.yellow.light};
+        }
     }
 `;
