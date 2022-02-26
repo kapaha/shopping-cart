@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useUI } from 'hooks';
+import { Home } from 'pages';
 import { Header } from 'components';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/theme';
@@ -23,11 +24,6 @@ const App = () => {
             </>
         </ThemeProvider>
     );
-};
-
-// Below for testing
-const Home = () => {
-    return <div>Homepage</div>;
 };
 
 const Shop = () => {
