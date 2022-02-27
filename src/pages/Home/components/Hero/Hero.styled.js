@@ -20,14 +20,26 @@ export const Image = styled.img`
 
 export const MessageContainer = styled.div`
     text-align: center;
-    margin-top: 10vmax;
+    margin-top: 30vmax;
 
     > * + * {
         margin-top: 2rem;
+    }
+
+    .btn {
+        font-size: 1.25rem;
+    }
+
+    @media screen and (min-width: ${theme.breakPoints.small}) {
+        margin-top: 10vmax;
     }
 `;
 
 export const Message = styled.h1`
     font-size: 3rem;
     color: black;
+
+    @media screen and (min-width: ${theme.breakPoints.medium}) {
+        font-size: 4rem;
+    }
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import image from 'assets/hero.jpg';
 import { Link } from 'react-router-dom';
-import { Button, StyledLink } from 'components';
+import { Button } from 'components';
 import { Container, Image, MessageContainer, Message } from './Hero.styled';
 
 const Hero = () => {
@@ -10,7 +10,7 @@ const Hero = () => {
             <Image src={image} />
             <MessageContainer>
                 <Message>Your style, Your way</Message>
-                <Button as={Link} to="/shop">
+                <Button as={Link} to="/shop" className="btn">
                     Shop Now
                 </Button>
             </MessageContainer>
