@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from 'styles/theme';
 
 export const Container = styled.div`
     height: 100vh;
@@ -15,7 +14,7 @@ export const Image = styled.img`
     width: 100%;
     object-fit: cover;
     object-position: 35% 20%;
-    z-index: ${theme.zIndex.heroImage};
+    z-index: ${(props) => props.theme.zIndex.heroImage};
 `;
 
 export const MessageContainer = styled.div`
@@ -30,7 +29,7 @@ export const MessageContainer = styled.div`
         font-size: 1.25rem;
     }
 
-    @media screen and (min-width: ${theme.breakPoints.small}) {
+    @media screen and (min-width: ${(props) => props.theme.breakPoints.small}) {
         margin-top: 10vmax;
     }
 `;
@@ -39,7 +38,8 @@ export const Message = styled.h1`
     font-size: 3rem;
     color: black;
 
-    @media screen and (min-width: ${theme.breakPoints.medium}) {
+    @media screen and (min-width: ${(props) =>
+            props.theme.breakPoints.medium}) {
         font-size: 4rem;
     }
 `;

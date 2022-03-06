@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { theme } from 'styles/theme';
 
 const commonStyles = css`
     // reset
@@ -17,7 +16,6 @@ const commonStyles = css`
 
     // common styles
     font-weight: 600;
-    color: white;
     border: solid 2px transparent;
     border-radius: 0.4em;
     outline: solid transparent;
@@ -29,17 +27,19 @@ const commonStyles = css`
     }
 
     &:focus-visible {
-        box-shadow: 0 0 0 1px white, 0 0 0 3px ${theme.colors.orange.light};
+        box-shadow: 0 0 0 1px white,
+            0 0 0 3px ${(props) => props.theme.colors.orange.light};
     }
 `;
 
 export const StyledButton = styled.button`
-    --bg-color: ${theme.colors.darkGrey.dark};
+    --bg-color: ${(props) => props.theme.colors.darkGrey.dark};
 
     ${commonStyles}
 
     padding: 0.5em 1em;
     font-size: 1rem;
+    color: white;
     background-color: var(--bg-color);
 
     &:hover {
@@ -54,9 +54,10 @@ export const IconButton = styled.button`
 
     padding: 0.5em;
     font-size: 1.5rem;
+    color: ${(props) => props.theme.textColors.primary};
 
     &:hover {
-        border-color: white;
+        border-color: currentColor;
     }
 
     svg {
@@ -67,12 +68,13 @@ export const IconButton = styled.button`
 export const StyledLink = styled(Link)`
     ${commonStyles}
 
+    color: ${(props) => props.theme.textColors.primary};
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 0;
 
     &:hover {
-        color: black;
+        color: ${(props) => props.theme.textColors.hover};
     }
 `;

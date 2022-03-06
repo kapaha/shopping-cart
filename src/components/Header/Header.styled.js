@@ -1,30 +1,30 @@
 import styled from 'styled-components';
-import { theme } from 'styles/theme';
 
 export const StyledHeader = styled.header`
     display: flex;
-    position: fixed;
+    position: ${(props) => props.theme.headerPosition};
     top: 0;
     left: 0;
     width: 100%;
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    color: white;
 
-    @media screen and (min-width: ${theme.breakPoints.medium}) {
+    @media screen and (min-width: ${(props) =>
+            props.theme.breakPoints.medium}) {
         padding: 2rem;
     }
 
     .menu-toggle {
-        @media screen and (min-width: ${theme.breakPoints.large}) {
+        @media screen and (min-width: ${(props) =>
+                props.theme.breakPoints.large}) {
             display: none;
         }
     }
 `;
 
 export const Logo = styled.h1`
-    font-family: ${theme.fontFamily.title};
+    font-family: ${(props) => props.theme.fontFamily.title};
     font-size: 3rem;
     letter-spacing: 0.2em;
     height: 100%;

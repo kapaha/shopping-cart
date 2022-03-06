@@ -7,7 +7,7 @@ export const MobileNav = ({ isMobileNavOpen, closeMobileNav }) => {
     return (
         <Navbar isMobileNavOpen={isMobileNavOpen}>
             <MenuControls>
-                <IconButton onClick={closeMobileNav}>
+                <IconButton onClick={closeMobileNav} className="close-btn">
                     <FaTimes />
                 </IconButton>
             </MenuControls>

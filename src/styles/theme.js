@@ -1,4 +1,4 @@
-export const theme = {
+const defaultTheme = {
     colors: {
         red: {
             light: '#fc5c65',
@@ -53,4 +53,24 @@ export const theme = {
     fontFamily: {
         title: 'Bebas Neue, cursive',
     },
+};
+
+export const homePageTheme = {
+    ...defaultTheme,
+    textColors: {
+        primary: 'white',
+        secondary: 'black',
+        hover: 'black',
+    },
+    headerPosition: 'fixed',
+};
+
+export const theme = {
+    ...defaultTheme,
+    textColors: {
+        primary: 'black',
+        secondary: 'white',
+        hover: defaultTheme.colors.yellow.dark,
+    },
+    headerPosition: 'static',
 };

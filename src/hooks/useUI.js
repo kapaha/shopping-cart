@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'hooks';
-import { theme } from 'styles/theme';
 
-const useUI = () => {
-    const isDesktop = useMediaQuery(`(min-width: ${theme.breakPoints.medium})`);
+const useUI = (currentTheme) => {
+    const isDesktop = useMediaQuery(
+        `(min-width: ${currentTheme.breakPoints.medium})`
+    );
 
     useEffect(() => {
         if (isDesktop) {

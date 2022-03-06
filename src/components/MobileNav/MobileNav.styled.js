@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from 'styles/theme';
 
 export const Navbar = styled.nav`
     --border: 1px solid white;
@@ -13,14 +12,18 @@ export const Navbar = styled.nav`
     transform: ${({ isMobileNavOpen }) =>
         isMobileNavOpen ? 'translateX(0)' : 'translateX(-100%)'};
     transition: transform 0.3s ease-in-out;
-    background-color: ${theme.colors.darkGrey.dark};
-    z-index: ${theme.zIndex.mobileNav};
+    background-color: ${(props) => props.theme.colors.darkGrey.dark};
+    z-index: ${(props) => props.theme.zIndex.mobileNav};
     overflow-y: auto;
 `;
 
 export const MenuControls = styled.div`
     padding: 1.5rem 0;
     border-bottom: var(--border);
+
+    .close-btn {
+        color: white;
+    }
 `;
 
 export const Menu = styled.ul``;
@@ -31,9 +34,10 @@ export const MenuItem = styled.li`
 
     .link {
         padding: 3rem;
+        color: white;
 
         &:hover {
-            color: ${theme.colors.yellow.light};
+            color: ${(props) => props.theme.colors.yellow.light};
         }
     }
 `;
