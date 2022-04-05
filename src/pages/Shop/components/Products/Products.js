@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     Grid,
     Card,
@@ -21,6 +22,11 @@ const Products = ({ products }) => {
 const Product = ({ product }) => {
     return (
         <Card>
+            <Link
+                className="product-link"
+                aria-label={product.title}
+                to={`/shop/${product.id}`}
+            />
             <CardImage src={product.image} alt={product.title} />
             <CardContent>
                 <Name>{product.title}</Name>

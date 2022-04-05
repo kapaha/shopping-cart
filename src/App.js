@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useUI } from 'hooks';
-import { Home, Shop } from 'pages';
+import { Home, Shop, ProductDetails } from 'pages';
 import { Header } from 'components';
 import { ThemeProvider } from 'styled-components';
 import { homePageTheme, theme } from 'styles/theme';
@@ -29,6 +29,10 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/shop" element={<Shop />} />
+                    <Route
+                        path="/shop/:productId"
+                        element={<ProductDetails />}
+                    />
                 </Routes>
             </>
         </ThemeProvider>
