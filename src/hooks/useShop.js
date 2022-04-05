@@ -12,7 +12,7 @@ const useShop = () => {
     );
 
     return {
-        products: filteredProducts,
+        products: filteredProducts || [],
         loading,
         error,
     };
