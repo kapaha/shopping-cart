@@ -10,17 +10,19 @@ export const NumberInput = ({
     step,
     className,
     size,
+    onChange,
 }) => {
     return (
         <div className={className}>
             <Label htmlFor={inputId}>{LabelText}</Label>
             <Input
                 id={inputId}
-                defaultValue={value}
+                value={value}
                 min={min}
                 max={max}
                 step={step}
                 size={size}
+                onChange={onChange}
             ></Input>
         </div>
     );
