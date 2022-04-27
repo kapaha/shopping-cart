@@ -27,6 +27,7 @@ const App = () => {
                     isMobileNavOpen={isMobileNavOpen}
                     openMobileNav={openMobileNav}
                     closeMobileNav={closeMobileNav}
+                    getCartQuantity={getCartQuantity}
                 />
                 <Routes>
                     <Route path="/" element={<Home />} />

@@ -39,3 +39,21 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
+
+export const Badge = styled.span`
+    --size: 20px;
+
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    width: var(--size);
+    height: var(--size);
+
+    font-size: 12px;
+    line-height: var(--size);
+    color: white;
+
+    border-radius: 100%;
+    background-color: ${({ theme }) => theme.colors.red.dark};
+`;
