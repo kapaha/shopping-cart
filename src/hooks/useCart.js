@@ -15,6 +15,8 @@ const useCart = () => {
     const cartReadyTimer = useRef(null);
 
     function incCartProductQuantity(product, quantity) {
+        quantity = Number(quantity);
+
         setCart((prevState) => {
             // check if cart already contains the product
             const containsProduct = cart.find(

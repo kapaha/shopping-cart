@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useUI } from 'hooks';
+import { useUI, useCart } from 'hooks';
 import { Home, Shop, ProductDetails } from 'pages';
 import { Header } from 'components';
 import { ThemeProvider } from 'styled-components';
@@ -17,6 +17,8 @@ const App = () => {
         closeMobileNav,
     } = useUI(currentTheme);
 
+    const { cartStatus, getCartQuantity, addToCart } = useCart();
+
     return (
         <ThemeProvider theme={currentTheme}>
             <>
@@ -31,7 +33,12 @@ const App = () => {
                     <Route path="/shop" element={<Shop />} />
                     <Route
                         path="/shop/:productId"
-                        element={<ProductDetails />}
+                        element={
+                            <ProductDetails
+                                cartStatus={cartStatus}
+                                addToCart={addToCart}
+                            />
+                        }
                     />
                 </Routes>
             </>

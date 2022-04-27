@@ -20,6 +20,7 @@ const commonStyles = css`
     border-radius: 0.4em;
     outline: solid transparent;
     transition: box-shadow 0.2s ease-in-out;
+    position: relative;
 
     &:active {
         transform: translateY(1px);

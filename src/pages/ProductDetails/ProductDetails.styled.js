@@ -16,15 +16,6 @@ export const Product = styled.div`
             order: 4;
         }
     }
-
-    .cartButton {
-        padding: 1em;
-
-        @media screen and (min-width: ${({ theme }) =>
-                theme.breakPoints.medium}) {
-            order: 5;
-        }
-    }
 `;
 
 export const ProductImage = styled.img`

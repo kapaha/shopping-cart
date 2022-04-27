@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useShop } from 'hooks';
-import { Button, NumberInput } from 'components';
+import { NumberInput } from 'components';
+import AddToCartBtn from './components/AddToCartBtn';
 
 import {
     Product,
@@ -12,9 +13,16 @@ import {
     ProductInfo,
 } from './ProductDetails.styled';
 
-const ProductDetails = () => {
+const ProductDetails = ({ cartStatus, addToCart }) => {
     const { productId } = useParams();
+
     const { data: product, loading, error } = useShop(productId);
+
+    const [quantity, setQuantity] = useState('1');
+
+    function handleQuantity(e) {
+        setQuantity(e.target.value);
+    }
 
     if (loading) return 'loading';
 
@@ -31,13 +39,17 @@ const ProductDetails = () => {
                         className="numberInput"
                         inputId="quantity"
                         LabelText="Quantity:"
-                        value="1"
+                        value={quantity}
                         min="1"
                         max="9999"
                         step="1"
                         size="4"
+                        onChange={handleQuantity}
                     />
-                    <Button className="cartButton">Add To Cart</Button>
+                    <AddToCartBtn
+                        onClick={() => addToCart(product, quantity)}
+                        cartStatus={cartStatus}
+                    />
                     <ProductDescription>
                         {product.description}
                     </ProductDescription>
