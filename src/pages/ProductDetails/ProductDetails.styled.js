@@ -10,11 +10,58 @@ export const Product = styled.div`
         justify-content: space-between;
     }
 
-    .numberInput {
+    .numberInput,
+    .skeleton-number-input {
         @media screen and (min-width: ${({ theme }) =>
                 theme.breakPoints.medium}) {
             order: 4;
         }
+    }
+
+    .skeleton-img-container {
+        @media screen and (min-width: ${({ theme }) =>
+                theme.breakPoints.medium}) {
+            width: 35%;
+        }
+
+        .skeleton-img {
+            width: 75%;
+            height: 90vw;
+            margin: 0 auto;
+            display: block;
+
+            @media screen and (min-width: ${({ theme }) =>
+                    theme.breakPoints.medium}) {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        }
+    }
+
+    .skeleton-price {
+        width: 6ch;
+    }
+
+    .skeleton-quantity {
+        width: 9ch;
+    }
+
+    .skeleton-input {
+        margin-top: 1rem;
+        height: 66px;
+        width: 94px;
+    }
+
+    .skeleton-btn-container {
+        @media screen and (min-width: ${({ theme }) =>
+                theme.breakPoints.medium}) {
+            order: 5;
+        }
+    }
+
+    .skeleton-btn {
+        padding: 1rem;
     }
 `;
 

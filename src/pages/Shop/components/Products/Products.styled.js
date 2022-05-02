@@ -7,6 +7,7 @@ export const Grid = styled.div`
     justify-content: center;
     gap: 1.5rem;
     padding: 1.5rem;
+    grid-template-columns: 1fr;
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.small}) {
         grid-template-columns: repeat(2, 1fr);
@@ -34,6 +35,38 @@ export const Card = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
+    }
+
+    .skeleton-container {
+        width: 100%;
+
+        :not(:first-child) {
+            margin-top: 0.25rem;
+        }
+    }
+
+    .skeleton-img {
+        min-height: 250px;
+        height: 25vh;
+        width: 100%;
+    }
+
+    .skeleton-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .skeleton-text {
+        width: 100%;
+    }
+
+    .skeleton-price {
+        width: 20%;
+        margin-top: 1rem;
     }
 `;
 

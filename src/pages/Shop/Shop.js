@@ -5,12 +5,11 @@ import Products from './components/Products/Products';
 const Shop = () => {
     const { data: products, loading, error } = useShop();
 
-    if (loading) return 'loading';
-    if (error) return 'error';
+    if (error) return <main>Error</main>;
 
     return (
         <main>
-            <Products products={products} />
+            <Products products={products} loading={loading} />
         </main>
     );
 };

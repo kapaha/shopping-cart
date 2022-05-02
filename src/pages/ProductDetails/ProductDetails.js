@@ -12,6 +12,7 @@ import {
     ProductDescription,
     ProductInfo,
 } from './ProductDetails.styled';
+import Skeleton from 'react-loading-skeleton';
 
 const ProductDetails = ({ cartStatus, addToCart }) => {
     const { productId } = useParams();
@@ -24,9 +25,9 @@ const ProductDetails = ({ cartStatus, addToCart }) => {
         setQuantity(e.target.value);
     }
 
-    if (loading) return 'loading';
+    if (loading) return <SkeletonProductDetails />;
 
-    if (error) return 'error';
+    if (error) return <main>Error</main>;
 
     return (
         <main>
@@ -52,6 +53,38 @@ const ProductDetails = ({ cartStatus, addToCart }) => {
                     />
                     <ProductDescription>
                         {product.description}
+                    </ProductDescription>
+                </ProductInfo>
+            </Product>
+        </main>
+    );
+};
+
+const SkeletonProductDetails = () => {
+    return (
+        <main>
+            <Product>
+                <Skeleton
+                    containerClassName="skeleton-img-container"
+                    className="skeleton-img"
+                />
+                <ProductInfo>
+                    <ProductTitle>
+                        <Skeleton count={2} />
+                    </ProductTitle>
+                    <ProductPrice>
+                        <Skeleton className="skeleton-price" />
+                    </ProductPrice>
+                    <div className="skeleton-number-input">
+                        <Skeleton className="skeleton-quantity" />
+                        <Skeleton className="skeleton-input" />
+                    </div>
+                    <Skeleton
+                        containerClassName="skeleton-btn-container"
+                        className="skeleton-btn"
+                    />
+                    <ProductDescription>
+                        <Skeleton count={5} />
                     </ProductDescription>
                 </ProductInfo>
             </Product>

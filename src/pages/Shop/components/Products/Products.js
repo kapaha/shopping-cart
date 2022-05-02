@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 import {
     Grid,
     Card,
@@ -9,17 +10,52 @@ import {
     Price,
 } from './Products.styled';
 
-const Products = ({ products }) => {
+const Products = ({ products, loading }) => {
+    if (loading) {
+        return (
+            <Grid>
+                {Array.from(Array(10)).map((_, index) => (
+                    <SkeletonProduct key={index} />
+                ))}
+            </Grid>
+        );
+    }
+
     return (
         <Grid>
             {products.map((product) => (
-                <Product key={product.id} product={product} />
+                <Product key={product.id} product={product} loading={loading} />
             ))}
         </Grid>
     );
 };
 
-const Product = ({ product }) => {
+const SkeletonProduct = () => {
+    return (
+        <Card>
+            <Skeleton
+                containerClassName="skeleton-container"
+                className="skeleton-img"
+            />
+            <div className="skeleton-card-content">
+                <Skeleton
+                    containerClassName="skeleton-container"
+                    className="skeleton-text"
+                />
+                <Skeleton
+                    containerClassName="skeleton-container"
+                    className="skeleton-text"
+                />
+                <Skeleton
+                    containerClassName="skeleton-container"
+                    className="skeleton-text skeleton-price"
+                />
+            </div>
+        </Card>
+    );
+};
+
+const Product = ({ product, loading }) => {
     return (
         <Card>
             <Link
