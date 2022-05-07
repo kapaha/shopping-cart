@@ -2,12 +2,12 @@ import React from 'react';
 import EmptyCart from './components/EmptyCart/EmptyCart';
 import { Container, Title } from './Cart.styled';
 
-const Cart = () => {
+const Cart = ({ cartQuantity }) => {
     return (
         <main>
             <Container>
                 <Title>Shopping Cart</Title>
-                <EmptyCart />
+                {cartQuantity ? <p>Cart Has Items</p> : <EmptyCart />}
             </Container>
         </main>
     );

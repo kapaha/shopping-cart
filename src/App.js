@@ -41,7 +41,10 @@ const App = () => {
                             />
                         }
                     />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route
+                        path="/cart"
+                        element={<Cart cartQuantity={cartQuantity} />}
+                    />
                 </Routes>
             </>
         </ThemeProvider>
