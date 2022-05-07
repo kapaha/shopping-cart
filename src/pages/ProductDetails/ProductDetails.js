@@ -26,6 +26,11 @@ const ProductDetails = ({ cartStatus, addToCart }) => {
         setQuantity(e.target.value);
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        addToCart(product, quantity);
+    }
+
     if (loading) return <SkeletonProductDetails />;
 
     if (error) return <main>Error</main>;
@@ -37,7 +42,7 @@ const ProductDetails = ({ cartStatus, addToCart }) => {
                 <ProductInfo>
                     <ProductTitle>{product.title}</ProductTitle>
                     <ProductPrice>£{product.price}</ProductPrice>
-                    <ProductForm onSubmit={() => addToCart(product, quantity)}>
+                    <ProductForm onSubmit={handleSubmit}>
                         <NumberInput
                             className="numberInput"
                             inputId="quantity"
