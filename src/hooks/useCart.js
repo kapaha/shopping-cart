@@ -11,6 +11,7 @@ const CART_STATUS = Object.freeze({
 const useCart = () => {
     const [cart, setCart] = useState([]);
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
+    const [cartQuantity, setCartQuanitty] = useState(0);
 
     const cartReadyTimer = useRef(null);
 
@@ -47,6 +48,8 @@ const useCart = () => {
         setTimeout(() => {
             incCartProductQuantity(product, quantity);
 
+            setCartQuanitty((prevState) => prevState + Number(quantity));
+
             setCartStatus(CART_STATUS.ADDING_PRODUCT_COMPLETE);
 
             cartReadyTimer.current = setTimeout(() => {
@@ -55,19 +58,10 @@ const useCart = () => {
         }, CART_LOADING_DELAY);
     }
 
-    function getCartQuantity() {
-        return cart.length === 0
-            ? 0
-            : cart.reduce(
-                  (accumulator, object) => accumulator + object.quantity,
-                  0
-              );
-    }
-
     return {
         cartStatus,
-        getCartQuantity,
         addToCart,
+        cartQuantity,
     };
 };
 

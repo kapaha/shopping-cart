@@ -14,10 +14,8 @@ export const Header = ({
     isMobileNavOpen,
     openMobileNav,
     closeMobileNav,
-    getCartQuantity,
+    cartQuantity,
 }) => {
-    const cartQuantity = getCartQuantity();
-
     return (
         <StyledHeader>
             <Container>
