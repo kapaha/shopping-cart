@@ -1,5 +1,6 @@
 import React from 'react';
 import EmptyCart from './components/EmptyCart/EmptyCart';
+import CartNotEmpty from './components/CartNotEmpty/CartNotEmpty';
 import { Container, Title } from './Cart.styled';
 
 const Cart = ({ cartQuantity }) => {
@@ -7,7 +8,7 @@ const Cart = ({ cartQuantity }) => {
         <main>
             <Container>
                 <Title>Shopping Cart</Title>
-                {cartQuantity ? <p>Cart Has Items</p> : <EmptyCart />}
+                {cartQuantity ? <CartNotEmpty /> : <EmptyCart />}
             </Container>
         </main>
     );
