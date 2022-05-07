@@ -1,6 +1,12 @@
 import React from 'react';
 import { FaShoppingCart, FaBars } from 'react-icons/fa';
-import { IconButton, MobileNav, DesktopNav, StyledLink } from 'components';
+import {
+    IconButton,
+    MobileNav,
+    DesktopNav,
+    StyledLink,
+    IconLink,
+} from 'components';
 import { StyledHeader, Container, Logo, Badge } from './Header.styled';
 
 export const Header = ({
@@ -24,10 +30,10 @@ export const Header = ({
                     <Logo>Ochre</Logo>
                 </StyledLink>
                 {!isMobileNavActive && <DesktopNav />}
-                <IconButton>
+                <IconLink to="/cart">
                     {cartQuantity !== 0 && <Badge>{cartQuantity}</Badge>}
                     <FaShoppingCart />
-                </IconButton>
+                </IconLink>
             </Container>
             {isMobileNavActive && (
                 <MobileNav

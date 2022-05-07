@@ -33,6 +33,20 @@ const commonStyles = css`
     }
 `;
 
+const iconStyles = css`
+    padding: 0.5em;
+    font-size: 1.5rem;
+    color: ${(props) => props.theme.textColors.primary};
+
+    &:hover {
+        border-color: currentColor;
+    }
+
+    svg {
+        display: block;
+    }
+`;
+
 export const StyledButton = styled.button`
     --bg-color: ${(props) => props.theme.colors.darkGrey.dark};
 
@@ -52,18 +66,12 @@ export const StyledButton = styled.button`
 
 export const IconButton = styled.button`
     ${commonStyles}
+    ${iconStyles}
+`;
 
-    padding: 0.5em;
-    font-size: 1.5rem;
-    color: ${(props) => props.theme.textColors.primary};
-
-    &:hover {
-        border-color: currentColor;
-    }
-
-    svg {
-        display: block;
-    }
+export const IconLink = styled(Link)`
+    ${commonStyles}
+    ${iconStyles}
 `;
 
 export const StyledLink = styled(Link)`
