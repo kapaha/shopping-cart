@@ -13,7 +13,7 @@ export const Navbar = styled.nav`
         isMobileNavOpen ? 'translateX(0)' : 'translateX(-100%)'};
     transition: transform 0.3s ease-in-out;
     background-color: ${(props) => props.theme.colors.darkGrey.dark};
-    z-index: ${(props) => props.theme.zIndex.mobileNav};
+    z-index: 9999;
     overflow-y: auto;
 `;
 

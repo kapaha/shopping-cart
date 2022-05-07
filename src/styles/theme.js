@@ -47,9 +47,6 @@ const defaultTheme = {
         large: '1025px',
         extraLarge: '1201px',
     },
-    zIndex: {
-        heroImage: -1,
-    },
     fontFamily: {
         title: 'Bebas Neue, cursive',
     },
@@ -62,7 +59,7 @@ export const homePageTheme = {
         secondary: 'black',
         hover: 'black',
     },
-    headerPosition: 'fixed',
+    headerPosition: 'absolute',
 };
 
 export const theme = {

@@ -14,7 +14,7 @@ export const Image = styled.img`
     width: 100%;
     object-fit: cover;
     object-position: 35% 20%;
-    z-index: ${(props) => props.theme.zIndex.heroImage};
+    z-index: -1;
 `;
 
 export const MessageContainer = styled.div`
