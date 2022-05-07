@@ -11,6 +11,7 @@ import {
     ProductPrice,
     ProductDescription,
     ProductInfo,
+    ProductForm,
 } from './ProductDetails.styled';
 import Skeleton from 'react-loading-skeleton';
 
@@ -36,21 +37,20 @@ const ProductDetails = ({ cartStatus, addToCart }) => {
                 <ProductInfo>
                     <ProductTitle>{product.title}</ProductTitle>
                     <ProductPrice>£{product.price}</ProductPrice>
-                    <NumberInput
-                        className="numberInput"
-                        inputId="quantity"
-                        LabelText="Quantity:"
-                        value={quantity}
-                        min="1"
-                        max="9999"
-                        step="1"
-                        size="4"
-                        onChange={handleQuantity}
-                    />
-                    <AddToCartBtn
-                        onClick={() => addToCart(product, quantity)}
-                        cartStatus={cartStatus}
-                    />
+                    <ProductForm onSubmit={() => addToCart(product, quantity)}>
+                        <NumberInput
+                            className="numberInput"
+                            inputId="quantity"
+                            LabelText="Quantity:"
+                            value={quantity}
+                            min="1"
+                            max="9999"
+                            step="1"
+                            size="4"
+                            onChange={handleQuantity}
+                        />
+                        <AddToCartBtn cartStatus={cartStatus} />
+                    </ProductForm>
                     <ProductDescription>
                         {product.description}
                     </ProductDescription>

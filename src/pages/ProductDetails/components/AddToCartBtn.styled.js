@@ -4,6 +4,8 @@ import { FaSpinner, FaRegCheckCircle } from 'react-icons/fa';
 
 export const StyledButton = styled(Button)`
     padding: 1em;
+    margin-top: 1.5em;
+    width: 100%;
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.medium}) {
         order: 5;

@@ -12,9 +12,9 @@ const TEXT = Object.freeze({
     ADDING_PRODUCT_COMPLETE: 'Added',
 });
 
-const AddToCartBtn = ({ className, onClick, cartStatus }) => {
+const AddToCartBtn = ({ className, cartStatus }) => {
     return (
-        <StyledButton className="cartButton" onClick={onClick}>
+        <StyledButton className="cartButton" type="submit">
             {ICON[cartStatus]}
             {TEXT[cartStatus]}
         </StyledButton>

@@ -10,7 +10,6 @@ export const Product = styled.div`
         justify-content: space-between;
     }
 
-    .numberInput,
     .skeleton-number-input {
         @media screen and (min-width: ${({ theme }) =>
                 theme.breakPoints.medium}) {
@@ -106,4 +105,10 @@ export const ProductPrice = styled.p`
 
 export const ProductDescription = styled.p`
     line-height: 1.75;
+`;
+
+export const ProductForm = styled.form`
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.medium}) {
+        order: 5;
+    }
 `;
