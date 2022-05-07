@@ -59,9 +59,10 @@ const useCart = () => {
     }
 
     return {
+        cart,
         cartStatus,
-        addToCart,
         cartQuantity,
+        addToCart,
     };
 };
 
