@@ -15,7 +15,7 @@ const CartNotEmpty = ({ cart }) => {
         <ProductsContainer>
             {cart.map((product) => {
                 return (
-                    <Product>
+                    <Product key={product.title}>
                         <ProductImage src={product.image} />
                         <ProductName>{product.title}</ProductName>
                         <ProductQuantity>
