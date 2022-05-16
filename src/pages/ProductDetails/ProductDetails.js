@@ -15,7 +15,7 @@ import {
 } from './ProductDetails.styled';
 import Skeleton from 'react-loading-skeleton';
 
-const ProductDetails = ({ cartStatus, addToCart }) => {
+const ProductDetails = ({ cartStatus, updateCart }) => {
     const { productId } = useParams();
 
     const { data: product, loading, error } = useShop(productId);
@@ -28,7 +28,7 @@ const ProductDetails = ({ cartStatus, addToCart }) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addToCart(product, quantity);
+        updateCart(product, quantity);
     }
 
     if (loading) return <SkeletonProductDetails />;

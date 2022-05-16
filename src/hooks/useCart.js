@@ -11,48 +11,58 @@ const CART_STATUS = Object.freeze({
 const useCart = () => {
     const [cart, setCart] = useState([]);
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
-    const [cartQuantity, setCartQuanitty] = useState(0);
+    const [cartQuantity, setCartQuantity] = useState(0);
 
     const cartReadyTimer = useRef(null);
 
-    function incCartProductQuantity(product, quantity) {
-        quantity = Number(quantity);
-
+    function updateProductQuantity(product, quantity) {
         setCart((prevState) => {
-            // check if cart already contains the product
-            const containsProduct = cart.find(
+            const cartContainsProduct = cart.find(
                 (item) => item.title === product.title
             );
 
-            // if it does increase its quantity
-            if (containsProduct) {
-                return prevState.map((item) =>
-                    item.title === product.title
-                        ? { ...product, quantity: item.quantity + quantity }
-                        : item
-                );
-            }
-
-            // if it doesnt add the item and quantity to the cart
-            return [...prevState, { ...product, quantity }];
+            // Update quantity of product if it exists
+            // Else create and add new product
+            // filter out all products with a quantity <= 0
+            return cartContainsProduct
+                ? prevState
+                      .map((item) =>
+                          item.title === product.title
+                              ? {
+                                    ...product,
+                                    quantity: item.quantity + quantity,
+                                }
+                              : item
+                      )
+                      .filter((item) => item.quantity > 0)
+                : [...prevState, { ...product, quantity }];
         });
     }
 
-    function addToCart(product, quantity) {
+    function updateCart(product, quantity) {
+        quantity = Number(quantity);
+
+        // return if cart is already updating a product
         if (cartStatus === CART_STATUS.ADDING_PRODUCT) return;
 
+        // reset the cart ready timer
         clearInterval(cartReadyTimer.current);
 
+        // set cart status to updating product
         setCartStatus(CART_STATUS.ADDING_PRODUCT);
 
         setTimeout(() => {
-            incCartProductQuantity(product, quantity);
+            // update the product quantity by a certain amount
+            updateProductQuantity(product, quantity);
 
-            setCartQuanitty((prevState) => prevState + Number(quantity));
+            // update the cart quantity by a a certain amount
+            setCartQuantity((prevState) => prevState + quantity);
 
+            // set the cart status to updating complete
             setCartStatus(CART_STATUS.ADDING_PRODUCT_COMPLETE);
 
             cartReadyTimer.current = setTimeout(() => {
+                // set the carts status to ready
                 setCartStatus(CART_STATUS.READY);
             }, CART_READY_DELAY);
         }, CART_LOADING_DELAY);
@@ -62,7 +72,7 @@ const useCart = () => {
         cart,
         cartStatus,
         cartQuantity,
-        addToCart,
+        updateCart,
     };
 };
 

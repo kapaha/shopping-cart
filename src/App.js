@@ -17,7 +17,7 @@ const App = () => {
         closeMobileNav,
     } = useUI(currentTheme);
 
-    const { cart, cartStatus, cartQuantity, addToCart } = useCart();
+    const { cart, cartStatus, cartQuantity, updateCart } = useCart();
 
     return (
         <ThemeProvider theme={currentTheme}>
@@ -37,14 +37,18 @@ const App = () => {
                         element={
                             <ProductDetails
                                 cartStatus={cartStatus}
-                                addToCart={addToCart}
+                                updateCart={updateCart}
                             />
                         }
                     />
                     <Route
                         path="/cart"
                         element={
-                            <Cart cartQuantity={cartQuantity} cart={cart} />
+                            <Cart
+                                cartQuantity={cartQuantity}
+                                cart={cart}
+                                updateCart={updateCart}
+                            />
                         }
                     />
                 </Routes>

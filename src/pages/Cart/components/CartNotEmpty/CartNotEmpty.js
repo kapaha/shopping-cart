@@ -10,7 +10,7 @@ import {
     ProductPrice,
 } from './CartNotEmpty.styled';
 
-const CartNotEmpty = ({ cart }) => {
+const CartNotEmpty = ({ cart, updateCart }) => {
     return (
         <ProductsContainer>
             {cart.map((product) => {
@@ -19,7 +19,7 @@ const CartNotEmpty = ({ cart }) => {
                         <ProductImage src={product.image} />
                         <ProductName>{product.title}</ProductName>
                         <ProductQuantity>
-                            <IconButton>
+                            <IconButton onClick={() => updateCart(product, -1)}>
                                 <FaMinus />
                             </IconButton>
                             <NumberInput
@@ -29,7 +29,7 @@ const CartNotEmpty = ({ cart }) => {
                                 max="40"
                                 step="1"
                             />
-                            <IconButton>
+                            <IconButton onClick={() => updateCart(product, 1)}>
                                 <FaPlus />
                             </IconButton>
                         </ProductQuantity>
