@@ -35,7 +35,11 @@ const CartNotEmpty = ({ cart, updateCart }) => {
                         </ProductQuantity>
                         <ProductPrice>£{product.price}</ProductPrice>
                         <IconButton>
-                            <FaTimes />
+                            <FaTimes
+                                onClick={() =>
+                                    updateCart(product, -product.quantity)
+                                }
+                            />
                         </IconButton>
                     </Product>
                 );
