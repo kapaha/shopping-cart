@@ -31,11 +31,20 @@ const useCart = () => {
                               ? {
                                     ...product,
                                     quantity: item.quantity + quantity,
+                                    totalPrice:
+                                        item.totalPrice + item.price * quantity,
                                 }
                               : item
                       )
                       .filter((item) => item.quantity > 0)
-                : [...prevState, { ...product, quantity }];
+                : [
+                      ...prevState,
+                      {
+                          ...product,
+                          quantity,
+                          totalPrice: product.price * quantity,
+                      },
+                  ];
         });
     }
 

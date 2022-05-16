@@ -33,7 +33,7 @@ const CartNotEmpty = ({ cart, updateCart }) => {
                                 <FaPlus />
                             </IconButton>
                         </ProductQuantity>
-                        <ProductPrice>£{product.price}</ProductPrice>
+                        <ProductPrice>£{product.totalPrice}</ProductPrice>
                         <IconButton>
                             <FaTimes
                                 onClick={() =>
