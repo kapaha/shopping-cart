@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ProductsContainer = styled.div``;
+export const Container = styled.div``;
 
 export const Product = styled.div`
     padding: 1rem;
@@ -12,11 +12,13 @@ export const Product = styled.div`
     gap: 1rem;
 `;
 
-export const ProductImage = styled.img`
+export const Image = styled.img`
     width: 25%;
 `;
-export const ProductName = styled.p``;
-export const ProductQuantity = styled.div`
+
+export const Name = styled.p``;
+
+export const Quantity = styled.div`
     display: flex;
 `;
-export const ProductPrice = styled.p``;
+export const Price = styled.p``;

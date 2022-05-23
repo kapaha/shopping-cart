@@ -30,9 +30,8 @@ const useCart = () => {
                           item.title === product.title
                               ? {
                                     ...product,
-                                    quantity: item.quantity + quantity,
-                                    totalPrice:
-                                        item.totalPrice + item.price * quantity,
+                                    quantity: quantity,
+                                    totalPrice: item.price * quantity,
                                 }
                               : item
                       )
@@ -48,7 +47,12 @@ const useCart = () => {
         });
     }
 
-    function updateCart(product, quantity) {
+    function updateCart(
+        product,
+        quantity,
+        cartLoadingDelay = CART_LOADING_DELAY,
+        cartReadyDelay = CART_READY_DELAY
+    ) {
         quantity = Number(quantity);
 
         // return if cart is already updating a product
@@ -73,8 +77,8 @@ const useCart = () => {
             cartReadyTimer.current = setTimeout(() => {
                 // set the carts status to ready
                 setCartStatus(CART_STATUS.READY);
-            }, CART_READY_DELAY);
-        }, CART_LOADING_DELAY);
+            }, cartReadyDelay);
+        }, cartLoadingDelay);
     }
 
     return {

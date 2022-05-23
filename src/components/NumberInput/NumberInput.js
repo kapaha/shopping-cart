@@ -2,27 +2,31 @@ import React from 'react';
 import { Label, Input } from './NumberInput.styled';
 
 export const NumberInput = ({
+    labelText,
     inputId,
-    LabelText,
     value,
-    min,
-    max,
-    step,
     className,
-    size,
     onChange,
+    onBlur,
 }) => {
+    function handleOnChange(event) {
+        const value = event.target.value;
+        // remove all chars that are not a digit
+        onChange(value.replace(/\D/g, ''));
+    }
+
     return (
         <div className={className}>
-            <Label htmlFor={inputId}>{LabelText}</Label>
+            {labelText && <Label htmlFor={inputId}>{labelText}</Label>}
             <Input
+                type="text"
+                inputMode="numeric"
                 id={inputId}
                 value={value}
-                min={min}
-                max={max}
-                step={step}
-                size={size}
-                onChange={onChange}
+                onChange={handleOnChange}
+                onBlur={onBlur}
+                onPaste={(e) => e.preventDefault()}
+                onDrop={(e) => e.preventDefault()}
             ></Input>
         </div>
     );

@@ -22,10 +22,6 @@ const ProductDetails = ({ cartStatus, updateCart }) => {
 
     const [quantity, setQuantity] = useState('1');
 
-    function handleQuantity(e) {
-        setQuantity(e.target.value);
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
         updateCart(product, quantity);
@@ -45,14 +41,10 @@ const ProductDetails = ({ cartStatus, updateCart }) => {
                     <ProductForm onSubmit={handleSubmit}>
                         <NumberInput
                             className="numberInput"
+                            labelText="Quantity:"
                             inputId="quantity"
-                            LabelText="Quantity:"
                             value={quantity}
-                            min="1"
-                            max="9999"
-                            step="1"
-                            size="4"
-                            onChange={handleQuantity}
+                            onChange={(value) => setQuantity(value)}
                         />
                         <AddToCartBtn cartStatus={cartStatus} />
                     </ProductForm>
