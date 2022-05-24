@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const CART_LOADING_DELAY = 1500; // ms
 const CART_READY_DELAY = 4000; // ms
@@ -14,6 +14,14 @@ const useCart = () => {
     const [cartQuantity, setCartQuantity] = useState(0);
 
     const cartReadyTimer = useRef(null);
+
+    useEffect(() => {
+        const newCartQuantity = cart.reduce(
+            (totalQuantity, product) => totalQuantity + product.quantity,
+            0
+        );
+        setCartQuantity(newCartQuantity);
+    }, [cart]);
 
     function updateProductQuantity(product, quantity) {
         setCart((prevState) => {
@@ -67,9 +75,6 @@ const useCart = () => {
         setTimeout(() => {
             // update the product quantity by a certain amount
             updateProductQuantity(product, quantity);
-
-            // update the cart quantity by a a certain amount
-            setCartQuantity((prevState) => prevState + quantity);
 
             // set the cart status to updating complete
             setCartStatus(CART_STATUS.ADDING_PRODUCT_COMPLETE);
