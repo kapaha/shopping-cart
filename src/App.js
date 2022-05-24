@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useUI, useCart } from 'hooks';
-import { Home, Shop, ProductDetails, Cart } from 'pages';
+import { Home, Shop, ProductDetails, Cart, Checkout } from 'pages';
 import { Header } from 'components';
 import { ThemeProvider } from 'styled-components';
 import { homePageTheme, theme } from 'styles/theme';
@@ -53,6 +53,7 @@ const App = () => {
                             />
                         }
                     />
+                    <Route path="/checkout" element={<Checkout />} />
                 </Routes>
             </>
         </ThemeProvider>
