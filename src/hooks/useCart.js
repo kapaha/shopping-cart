@@ -12,6 +12,7 @@ const useCart = () => {
     const [cart, setCart] = useState([]);
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
     const [cartQuantity, setCartQuantity] = useState(0);
+    const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
     const cartReadyTimer = useRef(null);
 
@@ -20,7 +21,15 @@ const useCart = () => {
             (totalQuantity, product) => totalQuantity + product.quantity,
             0
         );
+
+        const newCartTotalPrice = cart.reduce(
+            (totalPrice, product) =>
+                totalPrice + product.quantity * product.price,
+            0
+        );
+
         setCartQuantity(newCartQuantity);
+        setCartTotalPrice(newCartTotalPrice);
     }, [cart]);
 
     function updateProductQuantity(product, quantity) {
@@ -90,6 +99,7 @@ const useCart = () => {
         cart,
         cartStatus,
         cartQuantity,
+        cartTotalPrice,
         updateCart,
     };
 };
