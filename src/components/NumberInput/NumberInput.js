@@ -27,6 +27,7 @@ export const NumberInput = ({
                 onBlur={onBlur}
                 onPaste={(e) => e.preventDefault()}
                 onDrop={(e) => e.preventDefault()}
+                autoComplete="off"
             ></Input>
         </div>
     );
