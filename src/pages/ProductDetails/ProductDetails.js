@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useCartContext } from 'context';
 import { useShop } from 'hooks';
 import { NumberInput } from 'components';
 import AddToCartBtn from './components/AddToCartBtn';
@@ -15,9 +16,9 @@ import {
 } from './ProductDetails.styled';
 import Skeleton from 'react-loading-skeleton';
 
-const ProductDetails = ({ cartStatus, updateCart }) => {
+const ProductDetails = () => {
     const { productId } = useParams();
-
+    const { updateCart } = useCartContext();
     const { data: product, loading, error } = useShop(productId);
 
     const [quantity, setQuantity] = useState('1');
@@ -46,7 +47,7 @@ const ProductDetails = ({ cartStatus, updateCart }) => {
                             value={quantity}
                             onChange={(value) => setQuantity(value)}
                         />
-                        <AddToCartBtn cartStatus={cartStatus} />
+                        <AddToCartBtn />
                     </ProductForm>
                     <ProductDescription>
                         {product.description}

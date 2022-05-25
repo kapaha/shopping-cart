@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCartContext } from 'context';
 import { FaShoppingCart, FaBars } from 'react-icons/fa';
 import {
     IconButton,
@@ -14,8 +15,9 @@ export const Header = ({
     isMobileNavOpen,
     openMobileNav,
     closeMobileNav,
-    cartQuantity,
 }) => {
+    const { cartQuantity } = useCartContext();
+
     return (
         <StyledHeader>
             <Container>
