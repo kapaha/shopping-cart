@@ -65,8 +65,7 @@ const useCart = () => {
     function updateCart(
         product,
         quantity,
-        cartLoadingDelay = 1500,
-        cartReadyDelay = 4500
+        { loadingDelay = 0, readyDelay = 0 } = {}
     ) {
         quantity = Number(quantity);
 
@@ -89,8 +88,8 @@ const useCart = () => {
             cartReadyTimer.current = setTimeout(() => {
                 // set the carts status to ready
                 setCartStatus(CART_STATUS.READY);
-            }, cartReadyDelay);
-        }, cartLoadingDelay);
+            }, readyDelay);
+        }, loadingDelay);
     }
 
     return {
