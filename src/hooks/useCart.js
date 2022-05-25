@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 
-const CART_LOADING_DELAY = 1500; // ms
-const CART_READY_DELAY = 4000; // ms
 const CART_STATUS = Object.freeze({
     READY: 'READY',
     ADDING_PRODUCT: 'ADDING_PRODUCT',
@@ -67,8 +65,8 @@ const useCart = () => {
     function updateCart(
         product,
         quantity,
-        cartLoadingDelay = CART_LOADING_DELAY,
-        cartReadyDelay = CART_READY_DELAY
+        cartLoadingDelay = 1500,
+        cartReadyDelay = 4500
     ) {
         quantity = Number(quantity);
 
