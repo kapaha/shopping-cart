@@ -6,11 +6,15 @@ const useFetch = (url = '') => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        let controller = new AbortController();
+
         const getData = async () => {
             setLoading(true);
 
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    signal: controller.signal,
+                });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status ${response.status}`);
                 }
@@ -21,9 +25,13 @@ const useFetch = (url = '') => {
             }
 
             setLoading(false);
+
+            controller = null;
         };
 
         getData(url);
+
+        return () => controller?.abort();
     }, [url]);
 
     return {
