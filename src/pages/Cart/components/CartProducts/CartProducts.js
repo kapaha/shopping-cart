@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCartContext } from 'context';
 import { useDebounce } from 'hooks';
 import { FaTimes, FaPlus, FaMinus } from 'react-icons/fa';
 import { NumberInput, IconButton } from 'components';
@@ -11,23 +12,22 @@ import {
     Price,
 } from './CartProducts.styled';
 
-const CartProducts = ({ cart, updateCart }) => {
+const CartProducts = () => {
+    const { cart } = useCartContext();
+
     return (
         <Container>
             {cart.map((product) => (
-                <CartProduct
-                    key={product.id}
-                    product={product}
-                    updateCart={updateCart}
-                />
+                <CartProduct key={product.id} product={product} />
             ))}
         </Container>
     );
 };
 
-const CartProduct = ({ product, updateCart }) => {
+const CartProduct = ({ product }) => {
     const [quantity, setQuantity] = useState(product.quantity);
 
+    const { updateCart } = useCartContext();
     useDebounce(handleUpdateCart, 1000, [quantity]);
 
     function handleOnChange(value) {

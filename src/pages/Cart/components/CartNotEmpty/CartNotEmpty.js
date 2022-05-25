@@ -5,11 +5,11 @@ import { Button } from 'components';
 import CartProducts from '../CartProducts/CartProducts';
 
 const CartNotEmpty = () => {
-    const { cart, cartTotalPrice, updateCart } = useCartContext();
+    const { cartTotalPrice } = useCartContext();
 
     return (
         <div>
-            <CartProducts cart={cart} updateCart={updateCart} />
+            <CartProducts />
             <p>Total: £{cartTotalPrice}</p>
             <Button as={Link} to="/checkout">
                 Checkout
