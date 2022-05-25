@@ -26,8 +26,6 @@ const useFetch = (url = '') => {
 
             if (!controller.signal.aborted) setLoading(false);
 
-            console.log('data fetched');
-
             controller = null;
         };
 
