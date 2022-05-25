@@ -21,10 +21,12 @@ const useFetch = (url = '') => {
                 const data = await response.json();
                 setData(data);
             } catch (error) {
-                setError(error);
+                if (!controller.signal.aborted) setError(error);
             }
 
-            setLoading(false);
+            if (!controller.signal.aborted) setLoading(false);
+
+            console.log('data fetched');
 
             controller = null;
         };
