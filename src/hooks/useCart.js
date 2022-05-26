@@ -21,8 +21,8 @@ const useCart = () => {
                 rate: 4.1,
                 count: 259,
             },
-            quantity: 2,
-            totalPrice: 44.6,
+            quantity: 1,
+            totalPrice: 22.3,
         },
     ]);
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
@@ -67,8 +67,8 @@ const useCart = () => {
         };
     }
 
-    function updateProductQuantity(product, quantity) {
-        quantity = Number(quantity);
+    function updateProductQuantity(product, quantityIncrease) {
+        quantityIncrease = Number(quantityIncrease);
 
         setCart((prevState) => {
             const productExists = prevState.find(
@@ -81,8 +81,9 @@ const useCart = () => {
                           item.id === product.id
                               ? createNewProduct(
                                     item,
-                                    quantity,
-                                    item.price * quantity
+                                    item.quantity + quantityIncrease,
+                                    item.price *
+                                        (item.quantity + quantityIncrease)
                                 )
                               : item
                       )
@@ -93,7 +94,7 @@ const useCart = () => {
 
     async function updateCart(
         product,
-        quantity,
+        quantityIncrease,
         { loadingDelay = 0, readyDelay = 0 } = {}
     ) {
         if (cartStatus === CART_STATUS.UPDATING_PRODUCT) return;
@@ -103,7 +104,7 @@ const useCart = () => {
         setCartStatus(CART_STATUS.UPDATING_PRODUCT);
 
         cartLoadingTimer.current = setTimeout(() => {
-            updateProductQuantity(product, quantity);
+            updateProductQuantity(product, quantityIncrease);
 
             setCartStatus(CART_STATUS.UPDATING_PRODUCT_COMPLETE);
 

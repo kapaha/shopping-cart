@@ -37,7 +37,8 @@ const CartProduct = ({ product }) => {
     function handleUpdateCart() {
         const quantityNum = Number(quantity);
         if (quantity === '' || quantityNum === product.quantity) return;
-        updateCart(product, quantityNum);
+        const quantityIncrease = quantityNum - product.quantity;
+        updateCart(product, quantityIncrease);
     }
 
     function handleBlur() {
@@ -71,7 +72,7 @@ const CartProduct = ({ product }) => {
                 </IconButton>
             </Quantity>
             <Price>£{product.totalPrice}</Price>
-            <IconButton onClick={() => updateCart(product, 0)}>
+            <IconButton onClick={() => updateCart(product, -product.quantity)}>
                 <FaTimes />
             </IconButton>
         </Product>
