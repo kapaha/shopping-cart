@@ -1,16 +1,17 @@
 import React from 'react';
 import { useCartContext } from 'context';
+import { CART_STATUS } from 'hooks';
 import { StyledButton, Spinner, CheckCircle } from './AddToCartBtn.styled';
 
 const ICON = Object.freeze({
-    ADDING_PRODUCT: <Spinner />,
-    ADDING_PRODUCT_COMPLETE: <CheckCircle />,
+    [CART_STATUS.UPDATING_PRODUCT]: <Spinner />,
+    [CART_STATUS.UPDATING_PRODUCT_COMPLETE]: <CheckCircle />,
 });
 
 const TEXT = Object.freeze({
-    READY: 'Add To Cart',
-    ADDING_PRODUCT: 'Adding...',
-    ADDING_PRODUCT_COMPLETE: 'Added',
+    [CART_STATUS.READY]: 'Add To Cart',
+    [CART_STATUS.UPDATING_PRODUCT]: 'Adding...',
+    [CART_STATUS.UPDATING_PRODUCT_COMPLETE]: 'Added',
 });
 
 const AddToCartBtn = () => {

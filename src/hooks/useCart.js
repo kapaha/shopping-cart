@@ -1,92 +1,113 @@
 import { useState, useEffect, useRef } from 'react';
 
-const CART_STATUS = Object.freeze({
-    READY: 'READY',
-    ADDING_PRODUCT: 'ADDING_PRODUCT',
-    ADDING_PRODUCT_COMPLETE: 'ADDING_PRODUCT_COMPLETE',
+export const CART_STATUS = Object.freeze({
+    READY: 'ready',
+    UPDATING_PRODUCT: 'updating-product',
+    UPDATING_PRODUCT_COMPLETE: 'updating-product-complete',
 });
 
 const useCart = () => {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState([
+        {
+            // DUMMY DATA
+            id: 2,
+            title: 'Mens Casual Premium Slim Fit T-Shirts ',
+            price: 22.3,
+            description:
+                'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
+            category: "men's clothing",
+            image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+            rating: {
+                rate: 4.1,
+                count: 259,
+            },
+            quantity: 2,
+            totalPrice: 44.6,
+        },
+    ]);
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
     const [cartQuantity, setCartQuantity] = useState(0);
     const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
+    const cartLoadingTimer = useRef(null);
     const cartReadyTimer = useRef(null);
 
     useEffect(() => {
-        const newCartQuantity = cart.reduce(
-            (totalQuantity, product) => totalQuantity + product.quantity,
-            0
+        setCartQuantity(
+            cart.reduce(
+                (totalQuantity, product) => totalQuantity + product.quantity,
+                0
+            )
         );
-
-        const newCartTotalPrice = cart.reduce(
-            (totalPrice, product) =>
-                totalPrice + product.quantity * product.price,
-            0
+        setCartTotalPrice(
+            cart.reduce(
+                (totalPrice, product) =>
+                    totalPrice + product.quantity * product.price,
+                0
+            )
         );
-
-        setCartQuantity(newCartQuantity);
-        setCartTotalPrice(newCartTotalPrice);
     }, [cart]);
 
+    useEffect(() => {
+        return () => {
+            clearInterval(cartLoadingTimer);
+            clearInterval(cartReadyTimer);
+        };
+    }, []);
+
+    function createNewProduct(
+        product,
+        quantity = 1,
+        totalPrice = product.price
+    ) {
+        return {
+            ...product,
+            quantity,
+            totalPrice,
+        };
+    }
+
     function updateProductQuantity(product, quantity) {
+        quantity = Number(quantity);
+
         setCart((prevState) => {
-            const cartContainsProduct = cart.find(
+            const productExists = prevState.find(
                 (item) => item.title === product.title
             );
 
-            // Update quantity of product if it exists
-            // Else create and add new product
-            // filter out all products with a quantity <= 0
-            return cartContainsProduct
+            return productExists
                 ? prevState
                       .map((item) =>
-                          item.title === product.title
-                              ? {
-                                    ...product,
-                                    quantity: quantity,
-                                    totalPrice: item.price * quantity,
-                                }
+                          item.id === product.id
+                              ? createNewProduct(
+                                    item,
+                                    quantity,
+                                    item.price * quantity
+                                )
                               : item
                       )
                       .filter((item) => item.quantity > 0)
-                : [
-                      ...prevState,
-                      {
-                          ...product,
-                          quantity,
-                          totalPrice: product.price * quantity,
-                      },
-                  ];
+                : [...prevState, createNewProduct(product)];
         });
     }
 
-    function updateCart(
+    async function updateCart(
         product,
         quantity,
         { loadingDelay = 0, readyDelay = 0 } = {}
     ) {
-        quantity = Number(quantity);
+        if (cartStatus === CART_STATUS.UPDATING_PRODUCT) return;
 
-        // return if cart is already updating a product
-        if (cartStatus === CART_STATUS.ADDING_PRODUCT) return;
-
-        // reset the cart ready timer
         clearInterval(cartReadyTimer.current);
 
-        // set cart status to updating product
-        setCartStatus(CART_STATUS.ADDING_PRODUCT);
+        setCartStatus(CART_STATUS.UPDATING_PRODUCT);
 
-        setTimeout(() => {
-            // update the product quantity by a certain amount
+        cartLoadingTimer.current = setTimeout(() => {
             updateProductQuantity(product, quantity);
 
-            // set the cart status to updating complete
-            setCartStatus(CART_STATUS.ADDING_PRODUCT_COMPLETE);
+            setCartStatus(CART_STATUS.UPDATING_PRODUCT_COMPLETE);
 
             cartReadyTimer.current = setTimeout(() => {
-                // set the carts status to ready
                 setCartStatus(CART_STATUS.READY);
             }, readyDelay);
         }, loadingDelay);
