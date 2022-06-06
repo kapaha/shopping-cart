@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { formatPriceUK } from 'utils';
 import { useCartContext } from 'context';
 import { useDebounce } from 'hooks';
 import { FaTimes, FaPlus, FaMinus } from 'react-icons/fa';
@@ -71,7 +72,7 @@ const CartProduct = ({ product }) => {
                     <FaPlus />
                 </IconButton>
             </Quantity>
-            <Price>£{product.totalPrice.toString()}</Price>
+            <Price>{formatPriceUK(product.totalPrice.toString())}</Price>
             <IconButton onClick={() => updateCart(product, -product.quantity)}>
                 <FaTimes />
             </IconButton>

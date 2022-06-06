@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPriceUK } from 'utils';
 import { Link } from 'react-router-dom';
 import { useCartContext } from 'context';
 import { Button } from 'components';
@@ -10,7 +11,7 @@ const CartNotEmpty = () => {
     return (
         <div>
             <CartProducts />
-            <p>Total: £{cartTotalPrice.toString()}</p>
+            <p>Total: {formatPriceUK(cartTotalPrice.toString())}</p>
             <Button as={Link} to="/checkout">
                 Checkout
             </Button>

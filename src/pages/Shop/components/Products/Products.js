@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPriceUK } from 'utils';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import {
@@ -66,7 +67,7 @@ const Product = ({ product, loading }) => {
             <CardImage src={product.image} alt={product.title} />
             <CardContent>
                 <Name>{product.title}</Name>
-                <Price>£{product.price}</Price>
+                <Price>{formatPriceUK(product.price)}</Price>
             </CardContent>
         </Card>
     );

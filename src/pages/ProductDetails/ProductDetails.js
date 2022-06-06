@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { formatPriceUK } from 'utils';
 import { useCartContext } from 'context';
 import { useShop } from 'hooks';
 import { NumberInput } from 'components';
@@ -41,7 +42,7 @@ const ProductDetails = () => {
                 <ProductImage src={product.image} alt={product.title} />
                 <ProductInfo>
                     <ProductTitle>{product.title}</ProductTitle>
-                    <ProductPrice>£{product.price}</ProductPrice>
+                    <ProductPrice>{formatPriceUK(product.price)}</ProductPrice>
                     <ProductForm onSubmit={handleSubmit}>
                         <NumberInput
                             className="numberInput"
