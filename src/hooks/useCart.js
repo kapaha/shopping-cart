@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Big from 'big.js';
 
 export const CART_STATUS = Object.freeze({
     READY: 'ready',
@@ -6,28 +7,45 @@ export const CART_STATUS = Object.freeze({
     UPDATING_PRODUCT_COMPLETE: 'updating-product-complete',
 });
 
+const createCartProduct = (product, quantityInc) => {
+    if (product.quantity != null) {
+        return {
+            ...product,
+            quantity: product.quantity + quantityInc,
+            totalPrice: product.price.mul(product.quantity + quantityInc),
+        };
+    }
+
+    // create a new object with a subset of the products properties
+    const productSubset = (({ id, title, image, price }) => ({
+        id,
+        title,
+        image,
+        price,
+    }))(product);
+
+    return {
+        ...productSubset,
+        quantity: quantityInc,
+        price: new Big(productSubset.price),
+        totalPrice: new Big(productSubset.price),
+    };
+};
+
 const useCart = () => {
     const [cart, setCart] = useState([
         {
-            // DUMMY DATA
             id: 2,
             title: 'Mens Casual Premium Slim Fit T-Shirts ',
-            price: 22.3,
-            description:
-                'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
-            category: "men's clothing",
             image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-            rating: {
-                rate: 4.1,
-                count: 259,
-            },
             quantity: 1,
-            totalPrice: 22.3,
+            price: new Big(22.3),
+            totalPrice: new Big(22.3),
         },
     ]);
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
     const [cartQuantity, setCartQuantity] = useState(0);
-    const [cartTotalPrice, setCartTotalPrice] = useState(0);
+    const [cartTotalPrice, setCartTotalPrice] = useState(new Big(0));
 
     const cartLoadingTimer = useRef(null);
     const cartReadyTimer = useRef(null);
@@ -39,11 +57,12 @@ const useCart = () => {
                 0
             )
         );
+
         setCartTotalPrice(
             cart.reduce(
-                (totalPrice, product) =>
-                    totalPrice + product.quantity * product.price,
-                0
+                (cartTotalPrice, product) =>
+                    cartTotalPrice.add(product.totalPrice),
+                new Big(0)
             )
         );
     }, [cart]);
@@ -55,21 +74,7 @@ const useCart = () => {
         };
     }, []);
 
-    function createNewProduct(
-        product,
-        quantity = 1,
-        totalPrice = product.price
-    ) {
-        return {
-            ...product,
-            quantity,
-            totalPrice,
-        };
-    }
-
-    function updateProductQuantity(product, quantityIncrease) {
-        quantityIncrease = Number(quantityIncrease);
-
+    function updateProduct(product, quantityInc) {
         setCart((prevState) => {
             const productExists = prevState.find(
                 (item) => item.title === product.title
@@ -79,16 +84,11 @@ const useCart = () => {
                 ? prevState
                       .map((item) =>
                           item.id === product.id
-                              ? createNewProduct(
-                                    item,
-                                    item.quantity + quantityIncrease,
-                                    item.price *
-                                        (item.quantity + quantityIncrease)
-                                )
+                              ? createCartProduct(item, quantityInc)
                               : item
                       )
                       .filter((item) => item.quantity > 0)
-                : [...prevState, createNewProduct(product)];
+                : [...prevState, createCartProduct(product, quantityInc)];
         });
     }
 
@@ -104,7 +104,7 @@ const useCart = () => {
         setCartStatus(CART_STATUS.UPDATING_PRODUCT);
 
         cartLoadingTimer.current = setTimeout(() => {
-            updateProductQuantity(product, quantityIncrease);
+            updateProduct(product, quantityIncrease);
 
             setCartStatus(CART_STATUS.UPDATING_PRODUCT_COMPLETE);
 

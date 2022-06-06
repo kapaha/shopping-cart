@@ -10,7 +10,7 @@ const CartNotEmpty = () => {
     return (
         <div>
             <CartProducts />
-            <p>Total: £{cartTotalPrice}</p>
+            <p>Total: £{cartTotalPrice.toString()}</p>
             <Button as={Link} to="/checkout">
                 Checkout
             </Button>

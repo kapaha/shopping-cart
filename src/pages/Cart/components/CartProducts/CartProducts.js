@@ -71,7 +71,7 @@ const CartProduct = ({ product }) => {
                     <FaPlus />
                 </IconButton>
             </Quantity>
-            <Price>£{product.totalPrice}</Price>
+            <Price>£{product.totalPrice.toString()}</Price>
             <IconButton onClick={() => updateCart(product, -product.quantity)}>
                 <FaTimes />
             </IconButton>

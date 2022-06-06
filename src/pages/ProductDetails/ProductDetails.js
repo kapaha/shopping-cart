@@ -25,7 +25,10 @@ const ProductDetails = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        updateCart(product, quantity, { loadingDelay: 1000, readyDelay: 3000 });
+        updateCart(product, Number(quantity), {
+            loadingDelay: 1000,
+            readyDelay: 3000,
+        });
     }
 
     if (loading) return <SkeletonProductDetails />;
