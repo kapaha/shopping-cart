@@ -41,11 +41,11 @@ export const Container = styled.div`
 `;
 
 export const Badge = styled.span`
-    --size: 20px;
+    --size: 24px;
 
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: 0;
+    right: 0;
 
     width: var(--size);
     height: var(--size);

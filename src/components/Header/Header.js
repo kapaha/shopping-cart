@@ -31,7 +31,11 @@ export const Header = ({
                 </StyledLink>
                 {!isMobileNavActive && <DesktopNav />}
                 <IconLink to="/cart">
-                    {cartQuantity !== 0 && <Badge>{cartQuantity}</Badge>}
+                    {cartQuantity !== 0 && (
+                        <Badge>
+                            {cartQuantity > 99 ? '99+' : cartQuantity}
+                        </Badge>
+                    )}
                     <FaShoppingCart />
                 </IconLink>
             </Container>
