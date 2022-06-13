@@ -31,7 +31,7 @@ const CartProduct = ({ product }) => {
     const [error, setError] = useState('');
 
     const { updateCart, cartQuantity } = useCartContext();
-    useDebounce(handleUpdateCart, 1000, [quantity]);
+    useDebounce(handleUpdateCart, 500, [quantity]);
 
     function handleOnChange(value) {
         setQuantity(value);
