@@ -16,7 +16,7 @@ const AddToCartForm = ({ product }) => {
     const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
     const [error, setError] = useState('');
 
-    const { updateCart, getItemQuantity } = useCartContext();
+    const { updateCart, getItemQuantity, cartQuantity } = useCartContext();
 
     useEffect(() => {
         return () => {
@@ -37,8 +37,14 @@ const AddToCartForm = ({ product }) => {
             return;
         }
 
-        const newItemQuantity = getItemQuantity(product.id) + quantityNum;
-        const { isValid, error } = quantityValidator(newItemQuantity);
+        const cartItemQuantity = getItemQuantity(product.id);
+        const newItemQuantity = cartItemQuantity + quantityNum;
+
+        const { isValid, error } = quantityValidator(
+            cartItemQuantity,
+            newItemQuantity,
+            cartQuantity
+        );
 
         if (!isValid) {
             setError(error);

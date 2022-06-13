@@ -30,7 +30,7 @@ const CartProduct = ({ product }) => {
     const [quantity, setQuantity] = useState(product.quantity);
     const [error, setError] = useState('');
 
-    const { updateCart } = useCartContext();
+    const { updateCart, cartQuantity } = useCartContext();
     useDebounce(handleUpdateCart, 1000, [quantity]);
 
     function handleOnChange(value) {
@@ -47,7 +47,11 @@ const CartProduct = ({ product }) => {
 
         if (quantity === '' || quantityNum === product.quantity) return;
 
-        const { isValid, error } = quantityValidator(quantityNum);
+        const { isValid, error } = quantityValidator(
+            product.quantity,
+            quantityNum,
+            cartQuantity
+        );
 
         if (!isValid) {
             handleOnError(error);
