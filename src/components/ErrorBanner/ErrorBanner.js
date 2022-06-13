@@ -8,6 +8,8 @@ export const ErrorBanner = ({ text }) => {
         if (text && bannerEl.current) {
             bannerEl.current.scrollIntoView({
                 behavior: 'smooth',
+                block: 'center',
+                inline: 'center',
             });
         }
     }, [text]);
