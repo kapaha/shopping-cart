@@ -1,6 +1,5 @@
 import React from 'react';
-import { useCartContext } from 'context';
-import { CART_STATUS } from 'hooks';
+import { CART_STATUS } from 'constants';
 import { StyledButton, Spinner, CheckCircle } from './AddToCartBtn.styled';
 
 const ICON = Object.freeze({
@@ -14,8 +13,7 @@ const TEXT = Object.freeze({
     [CART_STATUS.UPDATING_PRODUCT_COMPLETE]: 'Added',
 });
 
-const AddToCartBtn = () => {
-    const { cartStatus } = useCartContext();
+const AddToCartBtn = ({ cartStatus }) => {
     return (
         <StyledButton className="cartButton" type="submit">
             {ICON[cartStatus]}

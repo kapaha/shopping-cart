@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { formatPriceUK } from 'utils';
-import { useCartContext } from 'context';
 import { useShop } from 'hooks';
-import { NumberInput } from 'components';
-import AddToCartBtn from './components/AddToCartBtn';
+import AddToCartForm from './components/AddToCartForm';
 
 import {
     Product,
@@ -13,24 +11,12 @@ import {
     ProductPrice,
     ProductDescription,
     ProductInfo,
-    ProductForm,
 } from './ProductDetails.styled';
 import Skeleton from 'react-loading-skeleton';
 
 const ProductDetails = () => {
     const { productId } = useParams();
-    const { updateCart } = useCartContext();
     const { data: product, loading, error } = useShop(productId);
-
-    const [quantity, setQuantity] = useState('1');
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        updateCart(product, Number(quantity), {
-            loadingDelay: 1000,
-            readyDelay: 3000,
-        });
-    }
 
     if (loading) return <SkeletonProductDetails />;
 
@@ -43,16 +29,7 @@ const ProductDetails = () => {
                 <ProductInfo>
                     <ProductTitle>{product.title}</ProductTitle>
                     <ProductPrice>{formatPriceUK(product.price)}</ProductPrice>
-                    <ProductForm onSubmit={handleSubmit}>
-                        <NumberInput
-                            className="numberInput"
-                            labelText="Quantity:"
-                            inputId="quantity"
-                            value={quantity}
-                            onChange={(value) => setQuantity(value)}
-                        />
-                        <AddToCartBtn />
-                    </ProductForm>
+                    <AddToCartForm product={product} />
                     <ProductDescription>
                         {product.description}
                     </ProductDescription>

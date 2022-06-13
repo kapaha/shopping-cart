@@ -1,18 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
 import Big from 'big.js';
+import { useState, useEffect } from 'react';
 
-export const CART_STATUS = Object.freeze({
-    READY: 'ready',
-    UPDATING_PRODUCT: 'updating-product',
-    UPDATING_PRODUCT_COMPLETE: 'updating-product-complete',
-});
-
-const createCartProduct = (product, quantityInc) => {
+const createCartProduct = (product, quantity) => {
     if (product.quantity != null) {
         return {
             ...product,
-            quantity: product.quantity + quantityInc,
-            totalPrice: product.price.mul(product.quantity + quantityInc),
+            quantity,
+            totalPrice: product.price.mul(quantity),
         };
     }
 
@@ -26,9 +20,9 @@ const createCartProduct = (product, quantityInc) => {
 
     return {
         ...productSubset,
-        quantity: quantityInc,
+        quantity,
         price: new Big(productSubset.price),
-        totalPrice: new Big(productSubset.price),
+        totalPrice: new Big(productSubset.price).mul(quantity),
     };
 };
 
@@ -43,12 +37,8 @@ const useCart = () => {
             totalPrice: new Big(22.3),
         },
     ]);
-    const [cartStatus, setCartStatus] = useState(CART_STATUS.READY);
     const [cartQuantity, setCartQuantity] = useState(0);
     const [cartTotalPrice, setCartTotalPrice] = useState(new Big(0));
-
-    const cartLoadingTimer = useRef(null);
-    const cartReadyTimer = useRef(null);
 
     useEffect(() => {
         setCartQuantity(
@@ -67,59 +57,42 @@ const useCart = () => {
         );
     }, [cart]);
 
-    useEffect(() => {
-        return () => {
-            clearInterval(cartLoadingTimer);
-            clearInterval(cartReadyTimer);
-        };
-    }, []);
-
-    function updateProduct(product, quantityInc) {
+    function updateProductQuantity(product, quantity) {
         setCart((prevState) => {
             const productExists = prevState.find(
                 (item) => item.title === product.title
             );
 
-            return productExists
-                ? prevState
-                      .map((item) =>
-                          item.id === product.id
-                              ? createCartProduct(item, quantityInc)
-                              : item
-                      )
-                      .filter((item) => item.quantity > 0)
-                : [...prevState, createCartProduct(product, quantityInc)];
+            if (productExists) {
+                return prevState
+                    .map((item) =>
+                        item.id === product.id
+                            ? createCartProduct(item, quantity)
+                            : item
+                    )
+                    .filter((item) => item.quantity > 0);
+            }
+
+            return [...prevState, createCartProduct(product, quantity)];
         });
     }
 
-    async function updateCart(
-        product,
-        quantityIncrease,
-        { loadingDelay = 0, readyDelay = 0 } = {}
-    ) {
-        if (cartStatus === CART_STATUS.UPDATING_PRODUCT) return;
+    function updateCart(product, quantity, onUpdate) {
+        updateProductQuantity(product, quantity);
+        onUpdate && onUpdate();
+    }
 
-        clearInterval(cartReadyTimer.current);
-
-        setCartStatus(CART_STATUS.UPDATING_PRODUCT);
-
-        cartLoadingTimer.current = setTimeout(() => {
-            updateProduct(product, quantityIncrease);
-
-            setCartStatus(CART_STATUS.UPDATING_PRODUCT_COMPLETE);
-
-            cartReadyTimer.current = setTimeout(() => {
-                setCartStatus(CART_STATUS.READY);
-            }, readyDelay);
-        }, loadingDelay);
+    function getItemQuantity(id) {
+        const cartItem = cart.find((item) => item.id === id);
+        return cartItem?.quantity ?? 0;
     }
 
     return {
         cart,
-        cartStatus,
         cartQuantity,
         cartTotalPrice,
         updateCart,
+        getItemQuantity,
     };
 };
 
