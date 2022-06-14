@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Navbar = styled.nav`
     --border: 1px solid white;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
