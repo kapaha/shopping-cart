@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCartContext } from 'context';
+import { useCartContext, useMobileNavContext } from 'context';
 import { FaShoppingCart, FaBars } from 'react-icons/fa';
 import {
     IconButton,
@@ -10,13 +10,9 @@ import {
 } from 'components';
 import { StyledHeader, Container, Logo, Badge } from './Header.styled';
 
-export const Header = ({
-    isMobileNavActive,
-    isMobileNavOpen,
-    openMobileNav,
-    closeMobileNav,
-}) => {
+export const Header = () => {
     const { cartQuantity } = useCartContext();
+    const { isMobileNavActive, openMobileNav } = useMobileNavContext();
 
     return (
         <StyledHeader>
@@ -39,12 +35,7 @@ export const Header = ({
                     <FaShoppingCart />
                 </IconLink>
             </Container>
-            {isMobileNavActive && (
-                <MobileNav
-                    isMobileNavOpen={isMobileNavOpen}
-                    closeMobileNav={closeMobileNav}
-                />
-            )}
+            {isMobileNavActive && <MobileNav />}
         </StyledHeader>
     );
 };
