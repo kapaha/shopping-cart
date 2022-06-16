@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, Input } from './NumberInput.styled';
+import { Label, Input, CartInput } from './NumberInput.styled';
 
 export const NumberInput = ({
     labelText,
@@ -8,6 +8,7 @@ export const NumberInput = ({
     className,
     onChange,
     onBlur,
+    isCartInput,
 }) => {
     function handleOnChange(event) {
         const value = event.target.value;
@@ -15,20 +16,26 @@ export const NumberInput = ({
         onChange(value.replace(/\D/g, ''));
     }
 
+    const inputProps = {
+        type: 'text',
+        inputMode: 'numeric',
+        autoComplete: 'off',
+        id: inputId,
+        value,
+        onChange: handleOnChange,
+        onBlur,
+        onPaste: (e) => e.preventDefault(),
+        onDrop: (e) => e.preventDefault(),
+    };
+
     return (
         <div className={className}>
             {labelText && <Label htmlFor={inputId}>{labelText}</Label>}
-            <Input
-                type="text"
-                inputMode="numeric"
-                id={inputId}
-                value={value}
-                onChange={handleOnChange}
-                onBlur={onBlur}
-                onPaste={(e) => e.preventDefault()}
-                onDrop={(e) => e.preventDefault()}
-                autoComplete="off"
-            ></Input>
+            {isCartInput ? (
+                <CartInput {...inputProps} />
+            ) : (
+                <Input {...inputProps} />
+            )}
         </div>
     );
 };

@@ -33,7 +33,7 @@ export const Logo = styled.h1`
 
 export const Container = styled.div`
     flex-grow: 1;
-    max-width: 1024px;
+    max-width: 1400px;
 
     display: flex;
     justify-content: space-between;

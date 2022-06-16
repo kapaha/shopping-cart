@@ -3,7 +3,7 @@ import { useCartContext } from 'context';
 import { useDebounce } from 'hooks';
 import { formatPriceUK } from 'utils';
 import { quantityValidator } from 'validators';
-import { FaTimes, FaPlus, FaMinus } from 'react-icons/fa';
+import { AiOutlinePlus, AiOutlineMinus, AiOutlineClose } from 'react-icons/ai';
 import { NumberInput, IconButton, ErrorBanner } from 'components';
 import {
     Container,
@@ -78,27 +78,39 @@ const CartProduct = ({ product }) => {
     }
 
     return (
-        <Product>
+        <Product className={error && 'error'}>
             <Image src={product.image} />
             <Name>{product.title}</Name>
+            <div className="btn-container">
+                <IconButton
+                    onClick={() => updateCart(product, 0)}
+                    className="btn btn-delete"
+                >
+                    <AiOutlineClose />
+                </IconButton>
+            </div>
             <Quantity>
-                <IconButton onClick={() => handleClick(-1)}>
-                    <FaMinus />
+                <IconButton
+                    onClick={() => handleClick(-1)}
+                    className="btn btn-minus"
+                >
+                    <AiOutlineMinus />
                 </IconButton>
                 <NumberInput
                     inputId="quantity"
                     value={quantity}
                     onChange={handleOnChange}
                     onBlur={handleBlur}
+                    isCartInput
                 />
-                <IconButton onClick={() => handleClick(1)}>
-                    <FaPlus />
+                <IconButton
+                    onClick={() => handleClick(1)}
+                    className="btn btn-plus"
+                >
+                    <AiOutlinePlus />
                 </IconButton>
             </Quantity>
             <Price>{formatPriceUK(product.totalPrice.toString())}</Price>
-            <IconButton onClick={() => updateCart(product, 0)}>
-                <FaTimes />
-            </IconButton>
             {error && <ErrorBanner text={error} />}
         </Product>
     );

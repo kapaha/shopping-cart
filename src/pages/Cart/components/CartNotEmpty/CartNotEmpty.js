@@ -4,18 +4,29 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from 'context';
 import { Button } from 'components';
 import CartProducts from '../CartProducts/CartProducts';
+import {
+    Container,
+    Flex,
+    TotalPriceText,
+    TotalPriceAmount,
+} from './CartNotEmpty.styled';
 
 const CartNotEmpty = () => {
     const { cartTotalPrice } = useCartContext();
 
     return (
-        <div>
+        <Container>
             <CartProducts />
-            <p>Total: {formatPriceUK(cartTotalPrice.toString())}</p>
-            <Button as={Link} to="/checkout">
+            <Flex>
+                <TotalPriceText>Total</TotalPriceText>
+                <TotalPriceAmount>
+                    {formatPriceUK(cartTotalPrice.toString())}
+                </TotalPriceAmount>
+            </Flex>
+            <Button as={Link} to="/checkout" className="button">
                 Checkout
             </Button>
-        </div>
+        </Container>
     );
 };
 
