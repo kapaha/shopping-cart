@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
 export const Grid = styled.div`
-    margin: 0 auto;
-    max-width: 1400px;
     display: grid;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    gap: 5vw;
     grid-template-columns: 1fr;
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.small}) {
@@ -15,11 +12,6 @@ export const Grid = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.large}) {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media screen and (min-width: ${({ theme }) =>
-            theme.breakPoints.extraLarge}) {
-        grid-template-columns: repeat(4, 1fr);
     }
 `;
 

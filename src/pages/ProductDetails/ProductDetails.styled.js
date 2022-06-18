@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 export const Product = styled.div`
-    max-width: 1400px;
-    padding: 7vw;
-    margin: 0 auto;
-
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.medium}) {
         display: flex;
         justify-content: space-between;

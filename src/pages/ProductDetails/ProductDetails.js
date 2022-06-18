@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { formatPriceUK } from 'utils';
 import { useShop } from 'hooks';
+import { PageContainer } from 'components';
 import AddToCartForm from './components/AddToCartForm';
 
 import {
@@ -18,12 +19,17 @@ const ProductDetails = () => {
     const { productId } = useParams();
     const { data: product, loading, error } = useShop(productId);
 
-    if (loading) return <SkeletonProductDetails />;
+    if (loading)
+        return (
+            <PageContainer>
+                <SkeletonProductDetails />;
+            </PageContainer>
+        );
 
     if (error) return <main>Error</main>;
 
     return (
-        <main>
+        <PageContainer>
             <Product>
                 <ProductImage src={product.image} alt={product.title} />
                 <ProductInfo>
@@ -35,39 +41,37 @@ const ProductDetails = () => {
                     </ProductDescription>
                 </ProductInfo>
             </Product>
-        </main>
+        </PageContainer>
     );
 };
 
 const SkeletonProductDetails = () => {
     return (
-        <main>
-            <Product>
+        <Product>
+            <Skeleton
+                containerClassName="skeleton-img-container"
+                className="skeleton-img"
+            />
+            <ProductInfo>
+                <ProductTitle>
+                    <Skeleton count={2} />
+                </ProductTitle>
+                <ProductPrice>
+                    <Skeleton className="skeleton-price" />
+                </ProductPrice>
+                <div className="skeleton-number-input">
+                    <Skeleton className="skeleton-quantity" />
+                    <Skeleton className="skeleton-input" />
+                </div>
                 <Skeleton
-                    containerClassName="skeleton-img-container"
-                    className="skeleton-img"
+                    containerClassName="skeleton-btn-container"
+                    className="skeleton-btn"
                 />
-                <ProductInfo>
-                    <ProductTitle>
-                        <Skeleton count={2} />
-                    </ProductTitle>
-                    <ProductPrice>
-                        <Skeleton className="skeleton-price" />
-                    </ProductPrice>
-                    <div className="skeleton-number-input">
-                        <Skeleton className="skeleton-quantity" />
-                        <Skeleton className="skeleton-input" />
-                    </div>
-                    <Skeleton
-                        containerClassName="skeleton-btn-container"
-                        className="skeleton-btn"
-                    />
-                    <ProductDescription>
-                        <Skeleton count={5} />
-                    </ProductDescription>
-                </ProductInfo>
-            </Product>
-        </main>
+                <ProductDescription>
+                    <Skeleton count={5} />
+                </ProductDescription>
+            </ProductInfo>
+        </Product>
     );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useShop } from 'hooks';
+import { PageContainer } from 'components';
 import Products from './components/Products/Products';
 
 const Shop = () => {
@@ -8,9 +9,9 @@ const Shop = () => {
     if (error) return <main>Error</main>;
 
     return (
-        <main>
+        <PageContainer>
             <Products products={products} loading={loading} />
-        </main>
+        </PageContainer>
     );
 };
 
