@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { formatPriceUK } from 'utils';
-import { useShop } from 'hooks';
+import { useShop, useDocumentTitle } from 'hooks';
 import { PageContainer } from 'components';
 import AddToCartForm from './components/AddToCartForm';
 
@@ -18,6 +18,7 @@ import Skeleton from 'react-loading-skeleton';
 const ProductDetails = () => {
     const { productId } = useParams();
     const { data: product, loading, error } = useShop(productId);
+    useDocumentTitle(`${product.title ? product.title : 'Item'} — Ochre`);
 
     if (loading)
         return (

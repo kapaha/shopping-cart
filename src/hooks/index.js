@@ -5,3 +5,4 @@ export { default as useShop } from './useShop';
 export { default as useCart } from './useCart';
 export { default as useTimeout } from './useTimeout';
 export { default as useDebounce } from './useDebounce';
+export { default as useDocumentTitle } from './useDocumentTitle';
