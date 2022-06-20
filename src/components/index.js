@@ -6,3 +6,4 @@ export * from './NumberInput/NumberInput';
 export * from './ErrorBanner/ErrorBanner';
 export * from './PageContainer/PageContainer';
 export * from './Footer/Footer';
+export * from './APIError/APIError';

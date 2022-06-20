@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { formatPriceUK } from 'utils';
 import { useShop, useDocumentTitle } from 'hooks';
-import { PageContainer } from 'components';
+import { APIError, PageContainer } from 'components';
 import AddToCartForm from './components/AddToCartForm';
 
 import {
@@ -27,7 +27,12 @@ const ProductDetails = () => {
             </PageContainer>
         );
 
-    if (error) return <main>Error</main>;
+    if (error)
+        return (
+            <PageContainer>
+                <APIError error={error} />
+            </PageContainer>
+        );
 
     return (
         <PageContainer>
