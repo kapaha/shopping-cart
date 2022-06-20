@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const Grid = styled.div`
     display: grid;
     justify-content: center;
-    gap: 5vw;
-    grid-template-columns: 1fr;
+    row-gap: 20vw;
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.small}) {
         grid-template-columns: repeat(2, 1fr);
+        gap: 7.5vw;
     }
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.large}) {
