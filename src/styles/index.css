@@ -19,6 +19,13 @@ body {
     min-height: 100vh;
 }
 
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
 img {
     max-width: 100%;
     display: block;

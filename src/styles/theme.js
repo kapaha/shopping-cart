@@ -59,7 +59,6 @@ export const homePageTheme = {
         secondary: 'black',
         hover: 'black',
     },
-    headerPosition: 'absolute',
 };
 
 export const theme = {
@@ -69,5 +68,4 @@ export const theme = {
         secondary: 'white',
         hover: defaultTheme.colors.yellow.dark,
     },
-    headerPosition: 'static',
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { CartContextProvider, MobileNavContextProvider } from 'context';
 import { Home, Shop, ProductDetails, Cart, Checkout } from 'pages';
-import { Header } from 'components';
+import { Footer, Header } from 'components';
 import { ThemeProvider } from 'styled-components';
 import { homePageTheme, theme } from 'styles/theme';
 
@@ -29,6 +29,7 @@ const App = () => {
                     </Routes>
                 </>
             </CartContextProvider>
+            <Footer />
         </ThemeProvider>
     );
 };

@@ -1,14 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-    height: 100vh;
-    display: grid;
-    place-items: center;
-`;
-
 export const Image = styled.img`
-    height: 100vh;
     position: absolute;
+    height: 100%;
     top: 0;
     left: 0;
     width: 100%;
@@ -18,8 +12,16 @@ export const Image = styled.img`
 `;
 
 export const MessageContainer = styled.div`
+    flex-grow: 1;
+    margin-top: 20vmax;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
     text-align: center;
-    margin-top: 30vmax;
 
     > * + * {
         margin-top: 2rem;
@@ -30,7 +32,7 @@ export const MessageContainer = styled.div`
     }
 
     @media screen and (min-width: ${(props) => props.theme.breakPoints.small}) {
-        margin-top: 10vmax;
+        margin-top: 0;
     }
 `;
 

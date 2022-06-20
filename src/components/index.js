@@ -5,3 +5,4 @@ export * from './DesktopNav/DesktopNav';
 export * from './NumberInput/NumberInput';
 export * from './ErrorBanner/ErrorBanner';
 export * from './PageContainer/PageContainer';
+export * from './Footer/Footer';

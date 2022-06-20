@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
     display: flex;
-    position: ${(props) => props.theme.headerPosition};
-    top: 0;
-    left: 0;
     width: 100%;
     justify-content: center;
     align-items: center;
