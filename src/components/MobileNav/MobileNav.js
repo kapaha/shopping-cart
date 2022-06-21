@@ -9,37 +9,39 @@ export const MobileNav = () => {
     const { isMobileNavOpen, closeMobileNav } = useMobileNavContext();
 
     return (
-        <Navbar isMobileNavOpen={isMobileNavOpen}>
-            <MenuControls>
-                <IconButton
-                    onClick={closeMobileNav}
-                    className="close-btn"
-                    aria-label="Close mobile menu"
-                    aria-expanded={isMobileNavOpen}
-                >
-                    <FaTimes />
-                </IconButton>
-            </MenuControls>
-            <Menu>
-                <MenuItem>
-                    <StyledLink
-                        to="/"
+        <FocusTrap active={isMobileNavOpen}>
+            <Navbar isMobileNavOpen={isMobileNavOpen}>
+                <MenuControls>
+                    <IconButton
                         onClick={closeMobileNav}
-                        className="link"
+                        className="close-btn"
+                        aria-label="Close mobile menu"
+                        aria-expanded={isMobileNavOpen}
                     >
-                        Home
-                    </StyledLink>
-                </MenuItem>
-                <MenuItem>
-                    <StyledLink
-                        to="/shop"
-                        onClick={closeMobileNav}
-                        className="link"
-                    >
-                        Shop
-                    </StyledLink>
-                </MenuItem>
-            </Menu>
-        </Navbar>
+                        <FaTimes />
+                    </IconButton>
+                </MenuControls>
+                <Menu>
+                    <MenuItem>
+                        <StyledLink
+                            to="/"
+                            onClick={closeMobileNav}
+                            className="link"
+                        >
+                            Home
+                        </StyledLink>
+                    </MenuItem>
+                    <MenuItem>
+                        <StyledLink
+                            to="/shop"
+                            onClick={closeMobileNav}
+                            className="link"
+                        >
+                            Shop
+                        </StyledLink>
+                    </MenuItem>
+                </Menu>
+            </Navbar>
+        </FocusTrap>
     );
 };
