@@ -104,6 +104,7 @@ const CartProduct = ({ product }) => {
                     onChange={handleOnChange}
                     onBlur={handleBlur}
                     isCartInput
+                    ariaLabel="Item quantity"
                 />
                 <IconButton
                     onClick={() => handleClick(1)}

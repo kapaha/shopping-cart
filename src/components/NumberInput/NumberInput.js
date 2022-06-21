@@ -9,6 +9,7 @@ export const NumberInput = ({
     onChange,
     onBlur,
     isCartInput,
+    ariaLabel,
 }) => {
     function handleOnChange(event) {
         const value = event.target.value;
@@ -26,6 +27,7 @@ export const NumberInput = ({
         onBlur,
         onPaste: (e) => e.preventDefault(),
         onDrop: (e) => e.preventDefault(),
+        'aria-label': ariaLabel,
     };
 
     return (
