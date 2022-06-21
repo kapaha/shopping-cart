@@ -85,6 +85,7 @@ const CartProduct = ({ product }) => {
                 <IconButton
                     onClick={() => updateCart(product, 0)}
                     className="btn btn-delete"
+                    aria-label="Remove all of item"
                 >
                     <AiOutlineClose />
                 </IconButton>
@@ -93,6 +94,7 @@ const CartProduct = ({ product }) => {
                 <IconButton
                     onClick={() => handleClick(-1)}
                     className="btn btn-minus"
+                    aria-label="Remove 1 of item"
                 >
                     <AiOutlineMinus />
                 </IconButton>
@@ -106,6 +108,7 @@ const CartProduct = ({ product }) => {
                 <IconButton
                     onClick={() => handleClick(1)}
                     className="btn btn-plus"
+                    aria-label="Add 1 of item"
                 >
                     <AiOutlinePlus />
                 </IconButton>
