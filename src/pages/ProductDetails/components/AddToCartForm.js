@@ -8,7 +8,7 @@ import { NumberInput, ErrorBanner } from 'components';
 import AddToCartBtn from './AddToCartBtn';
 import { Form } from './AddToCartForm.styled';
 
-const ERROR_BANNER_ID = 'cartFormQuantityError';
+const ERROR_BANNER_ID = 'addToCartFormError';
 
 const AddToCartForm = ({ product }) => {
     const updateDelay = useRef();
