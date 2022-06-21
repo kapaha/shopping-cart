@@ -9,6 +9,7 @@ export const Footer = () => {
                 href="https://github.com/kapaha"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Kapaha Github"
             >
                 Kapaha
                 <GithubLogo className="github-logo" />
