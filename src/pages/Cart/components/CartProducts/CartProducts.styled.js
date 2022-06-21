@@ -32,7 +32,7 @@ export const Product = styled.div`
 
     border-bottom: 1px solid grey;
 
-    div:last-child {
+    .cart-error {
         grid-area: error;
     }
 

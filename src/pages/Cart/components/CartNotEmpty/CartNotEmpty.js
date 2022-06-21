@@ -19,7 +19,7 @@ const CartNotEmpty = () => {
             <CartProducts />
             <Flex>
                 <TotalPriceText>Total</TotalPriceText>
-                <TotalPriceAmount>
+                <TotalPriceAmount aria-label="Total cart price">
                     {formatPriceUK(cartTotalPrice.toString())}
                 </TotalPriceAmount>
             </Flex>

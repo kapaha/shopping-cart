@@ -14,6 +14,8 @@ import {
     Price,
 } from './CartProducts.styled';
 
+const ERROR_BANNER_ID = 'cartQuantityError';
+
 const CartProducts = () => {
     const { cart } = useCartContext();
 
@@ -35,6 +37,7 @@ const CartProduct = ({ product }) => {
 
     function handleOnChange(value) {
         setQuantity(value);
+        setError('');
     }
 
     function handleOnError(msg) {
@@ -58,8 +61,6 @@ const CartProduct = ({ product }) => {
             return;
         }
 
-        setError('');
-
         updateCart(product, quantityNum);
     }
 
@@ -75,26 +76,18 @@ const CartProduct = ({ product }) => {
             const newQuantity = Number(prevState) + increment;
             return newQuantity < 0 ? 0 : newQuantity;
         });
+        setError('');
     }
 
     return (
         <Product className={error && 'error'}>
-            <Image src={product.image} alt={product.title} />
+            <Image src={product.image} alt="" />
             <Name>{product.title}</Name>
-            <div className="btn-container">
-                <IconButton
-                    onClick={() => updateCart(product, 0)}
-                    className="btn btn-delete"
-                    aria-label="Remove all of item"
-                >
-                    <AiOutlineClose />
-                </IconButton>
-            </div>
             <Quantity>
                 <IconButton
                     onClick={() => handleClick(-1)}
                     className="btn btn-minus"
-                    aria-label="Remove 1 of item"
+                    aria-label={`Remove 1 of ${product.title}`}
                 >
                     <AiOutlineMinus />
                 </IconButton>
@@ -104,18 +97,38 @@ const CartProduct = ({ product }) => {
                     onChange={handleOnChange}
                     onBlur={handleBlur}
                     isCartInput
-                    ariaLabel="Item quantity"
+                    ariaLabel={`Quantity for ${product.title}`}
                 />
                 <IconButton
                     onClick={() => handleClick(1)}
                     className="btn btn-plus"
-                    aria-label="Add 1 of item"
+                    aria-label={`Add 1 of ${product.title}`}
                 >
                     <AiOutlinePlus />
                 </IconButton>
             </Quantity>
-            <Price>{formatPriceUK(product.totalPrice)}</Price>
-            {error && <ErrorBanner text={error} />}
+            <Price
+                aria-label={`Price for ${product.quantity} ${product.title}`}
+            >
+                {formatPriceUK(product.totalPrice)}
+            </Price>
+            <div className="btn-container">
+                <IconButton
+                    onClick={() => updateCart(product, 0)}
+                    className="btn btn-delete"
+                    aria-label={`Remove all of ${product.title}`}
+                >
+                    <AiOutlineClose />
+                </IconButton>
+            </div>
+            {error && (
+                <ErrorBanner
+                    text={error}
+                    id={ERROR_BANNER_ID}
+                    ariaLive="polite"
+                    className="cart-error"
+                />
+            )}
         </Product>
     );
 };
