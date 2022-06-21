@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Banner } from './ErrorBanner.styled';
 
-export const ErrorBanner = ({ text }) => {
+export const ErrorBanner = ({ text, id }) => {
     const bannerEl = useRef();
 
     useEffect(() => {
@@ -14,5 +14,9 @@ export const ErrorBanner = ({ text }) => {
         }
     }, [text]);
 
-    return <Banner ref={bannerEl}>{text}</Banner>;
+    return (
+        <Banner ref={bannerEl} id={id}>
+            {text}
+        </Banner>
+    );
 };
