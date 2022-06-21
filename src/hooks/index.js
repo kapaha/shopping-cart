@@ -6,3 +6,4 @@ export { default as useCart } from './useCart';
 export { default as useTimeout } from './useTimeout';
 export { default as useDebounce } from './useDebounce';
 export { default as useDocumentTitle } from './useDocumentTitle';
+export { default as useLocalStorage } from './useLocalStorage';

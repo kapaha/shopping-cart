@@ -110,7 +110,7 @@ const CartProduct = ({ product }) => {
                     <AiOutlinePlus />
                 </IconButton>
             </Quantity>
-            <Price>{formatPriceUK(product.totalPrice.toString())}</Price>
+            <Price>{formatPriceUK(product.totalPrice)}</Price>
             {error && <ErrorBanner text={error} />}
         </Product>
     );

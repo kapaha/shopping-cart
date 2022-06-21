@@ -1,12 +1,13 @@
 import Big from 'big.js';
 import { useState, useEffect } from 'react';
+import { useLocalStorage } from 'hooks';
 
 const createCartProduct = (product, quantity) => {
     if (product.quantity != null) {
         return {
             ...product,
             quantity,
-            totalPrice: product.price.mul(quantity),
+            totalPrice: new Big(product.price).mul(quantity).toNumber(),
         };
     }
 
@@ -21,22 +22,12 @@ const createCartProduct = (product, quantity) => {
     return {
         ...productSubset,
         quantity,
-        price: new Big(productSubset.price),
-        totalPrice: new Big(productSubset.price).mul(quantity),
+        totalPrice: new Big(productSubset.price).mul(quantity).toNumber(),
     };
 };
 
 const useCart = () => {
-    const [cart, setCart] = useState([
-        {
-            id: 2,
-            title: 'Mens Casual Premium Slim Fit T-Shirts ',
-            image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-            quantity: 1,
-            price: new Big(22.3),
-            totalPrice: new Big(22.3),
-        },
-    ]);
+    const [cart, setCart] = useLocalStorage('useCart', []);
     const [cartQuantity, setCartQuantity] = useState(0);
     const [cartTotalPrice, setCartTotalPrice] = useState(new Big(0));
 
