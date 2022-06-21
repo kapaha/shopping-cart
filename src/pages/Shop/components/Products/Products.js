@@ -9,6 +9,7 @@ import {
     CardContent,
     Name,
     Price,
+    SkeletonCard,
 } from './Products.styled';
 
 const Products = ({ products, loading }) => {
@@ -33,26 +34,25 @@ const Products = ({ products, loading }) => {
 
 const SkeletonProduct = () => {
     return (
-        <Card>
+        <SkeletonCard>
             <Skeleton
-                containerClassName="skeleton-container"
+                containerClassName="skeleton-container skeleton-img-container"
                 className="skeleton-img"
             />
-            <div className="skeleton-card-content">
+            <CardContent>
                 <Skeleton
-                    containerClassName="skeleton-container"
-                    className="skeleton-text"
+                    containerClassName="skeleton-container skeleton-name-container"
+                    className="skeleton-name"
+                    count="2"
                 />
-                <Skeleton
-                    containerClassName="skeleton-container"
-                    className="skeleton-text"
-                />
-                <Skeleton
-                    containerClassName="skeleton-container"
-                    className="skeleton-text skeleton-price"
-                />
-            </div>
-        </Card>
+                <Price>
+                    <Skeleton
+                        containerClassName="skeleton-container skeleton-price-container"
+                        className="skeleton-price"
+                    />
+                </Price>
+            </CardContent>
+        </SkeletonCard>
     );
 };
 

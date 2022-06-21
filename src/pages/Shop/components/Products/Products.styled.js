@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Grid = styled.div`
     display: grid;
     justify-content: center;
+    grid-template-columns: 1fr;
     row-gap: 20vw;
 
     @media screen and (min-width: ${({ theme }) => theme.breakPoints.small}) {
@@ -27,38 +28,6 @@ export const Card = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-    }
-
-    .skeleton-container {
-        width: 100%;
-
-        :not(:first-child) {
-            margin-top: 0.25rem;
-        }
-    }
-
-    .skeleton-img {
-        min-height: 250px;
-        height: 25vh;
-        width: 100%;
-    }
-
-    .skeleton-card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-grow: 1;
-        margin-top: 1rem;
-        width: 100%;
-    }
-
-    .skeleton-text {
-        width: 100%;
-    }
-
-    .skeleton-price {
-        width: 20%;
-        margin-top: 1rem;
     }
 `;
 
@@ -91,4 +60,26 @@ export const Price = styled.p`
     color: ${(props) => props.theme.colors.darkGrey.dark};
     letter-spacing: 0.1em;
     margin-top: 1rem;
+`;
+
+export const SkeletonCard = styled(Card)`
+    > *,
+    .skeleton-container {
+        width: 100%;
+        max-width: 75vw;
+    }
+
+    .skeleton-name:last-of-type {
+        margin-top: 0.5rem;
+    }
+
+    .skeleton-img {
+        min-height: 200px;
+        height: 25vh;
+        width: 100%;
+    }
+
+    .skeleton-price {
+        width: 6ch;
+    }
 `;
