@@ -79,7 +79,7 @@ const CartProduct = ({ product }) => {
 
     return (
         <Product className={error && 'error'}>
-            <Image src={product.image} />
+            <Image src={product.image} alt={product.title} />
             <Name>{product.title}</Name>
             <div className="btn-container">
                 <IconButton
